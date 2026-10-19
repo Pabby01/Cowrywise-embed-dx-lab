@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Troubleshooting & Error Catalog — Cowrywise Embed</title>
-  <meta name="description" content="Comprehensive troubleshooting matrix, error catalog, root causes, and fixes for Cowrywise Embed API integrations.">
-  
+  <meta name="description"
+    content="Comprehensive troubleshooting matrix, error catalog, root causes, and fixes for Cowrywise Embed API integrations.">
+
   <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
   <script src="icons.js"></script>
 </head>
+
 <body>
 
   <!-- Toast Container -->
@@ -25,7 +30,7 @@
       <a href="index.html" class="logo-brand">
         <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
         <span class="logo-wordmark">cowrywise</span>
-        <span class="brand-badge">Embed DX Lab</span>
+
       </a>
 
       <nav class="nav-links">
@@ -52,7 +57,8 @@
         Troubleshooting Matrix & Error Catalog
       </h1>
       <p style="color:var(--cw-body); font-size:1.1rem; max-width:720px;">
-        Diagnose and resolve integration blockers quickly. Every error documented below includes its HTTP status code, root cause, code remediations, and a live sandbox simulator trigger.
+        Diagnose and resolve integration blockers quickly. Every error documented below includes its HTTP status code,
+        root cause, code remediations, and a live sandbox simulator trigger.
       </p>
     </div>
   </section>
@@ -60,21 +66,27 @@
   <!-- Troubleshooting Content -->
   <main class="section">
     <div class="container">
-      
+
       <!-- Search & Category Filters -->
       <div class="search-filter-bar">
         <div class="search-input-wrap">
           <span class="search-icon-pos">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
           </span>
-          <input type="text" id="error-search" placeholder="Search error codes (e.g. CW_ERR_INVALID_BVN, webhook, locked)..." />
+          <input type="text" id="error-search"
+            placeholder="Search error codes (e.g. CW_ERR_INVALID_BVN, webhook, locked)..." />
         </div>
 
         <div style="display:flex; gap:8px;">
           <button class="btn-secondary filter-btn active" data-category="all" style="padding:10px 18px;">All</button>
           <button class="btn-secondary filter-btn" data-category="kyc" style="padding:10px 18px;">KYC & BVN</button>
-          <button class="btn-secondary filter-btn" data-category="investment" style="padding:10px 18px;">Investments</button>
-          <button class="btn-secondary filter-btn" data-category="security" style="padding:10px 18px;">Webhooks & Security</button>
+          <button class="btn-secondary filter-btn" data-category="investment"
+            style="padding:10px 18px;">Investments</button>
+          <button class="btn-secondary filter-btn" data-category="security" style="padding:10px 18px;">Webhooks &
+            Security</button>
         </div>
       </div>
 
@@ -89,13 +101,16 @@
           </div>
           <h3 class="error-title">Bank Verification Number Failed Validation</h3>
           <p class="error-cause">
-            The submitted BVN does not exist, contains non-numeric characters, or fails Luhn-11 checksum validation against the national NIBSS switch.
+            The submitted BVN does not exist, contains non-numeric characters, or fails Luhn-11 checksum validation
+            against the national NIBSS switch.
           </p>
           <div class="error-fix">
-            <strong>Remediation:</strong> Validate that the BVN is exactly 11 digits using regex <code>^\d{11}$</code> before dispatching API requests. In the sandbox, only use the certified test BVN <code>22222222281</code>.
+            <strong>Remediation:</strong> Validate that the BVN is exactly 11 digits using regex <code>^\d{11}$</code>
+            before dispatching API requests. In the sandbox, only use the certified test BVN <code>22222222281</code>.
           </div>
           <div class="error-action-row">
-            <button class="btn-secondary test-error-btn" data-tab="onboarding" data-code="CW_ERR_INVALID_BVN" style="font-size:0.8rem; padding:6px 14px;">
+            <button class="btn-secondary test-error-btn" data-tab="onboarding" data-code="CW_ERR_INVALID_BVN"
+              style="font-size:0.8rem; padding:6px 14px;">
               Simulate Error in Sandbox ↗
             </button>
           </div>
@@ -109,13 +124,16 @@
           </div>
           <h3 class="error-title">24-Hour Cooling-Off Rule Active</h3>
           <p class="error-cause">
-            A redemption or withdrawal was attempted within 24 hours of purchasing mutual fund or treasury units. SEC regulations mandate this holding window to prevent chargeback and ACH float abuse.
+            A redemption or withdrawal was attempted within 24 hours of purchasing mutual fund or treasury units. SEC
+            regulations mandate this holding window to prevent chargeback and ACH float abuse.
           </p>
           <div class="error-fix">
-            <strong>Remediation:</strong> Check <code>investment.cooling_off_expires_at</code> before rendering the "Sell Units" button. Show a friendly countdown timer in your frontend UI until the window elapses.
+            <strong>Remediation:</strong> Check <code>investment.cooling_off_expires_at</code> before rendering the
+            "Sell Units" button. Show a friendly countdown timer in your frontend UI until the window elapses.
           </div>
           <div class="error-action-row">
-            <button class="btn-secondary test-error-btn" data-tab="investing" data-code="CW_ERR_WITHDRAWAL_LOCKED" style="font-size:0.8rem; padding:6px 14px;">
+            <button class="btn-secondary test-error-btn" data-tab="investing" data-code="CW_ERR_WITHDRAWAL_LOCKED"
+              style="font-size:0.8rem; padding:6px 14px;">
               Simulate Error in Sandbox ↗
             </button>
           </div>
@@ -129,13 +147,16 @@
           </div>
           <h3 class="error-title">Webhook HMAC-SHA256 Mismatch</h3>
           <p class="error-cause">
-            The inbound signature header does not match the computed hash of the raw request payload. This is almost always caused by body-parser middleware reordering JSON keys or stripping trailing whitespace.
+            The inbound signature header does not match the computed hash of the raw request payload. This is almost
+            always caused by body-parser middleware reordering JSON keys or stripping trailing whitespace.
           </p>
           <div class="error-fix">
-            <strong>Remediation:</strong> Compute HMAC over the raw UTF-8 request buffer before JSON parsing occurs. Verify using <code>crypto.timingSafeEqual()</code>.
+            <strong>Remediation:</strong> Compute HMAC over the raw UTF-8 request buffer before JSON parsing occurs.
+            Verify using <code>crypto.timingSafeEqual()</code>.
           </div>
           <div class="error-action-row">
-            <button class="btn-secondary test-error-btn" data-tab="webhooks" data-code="CW_ERR_INVALID_WEBHOOK_SIGNATURE" style="font-size:0.8rem; padding:6px 14px;">
+            <button class="btn-secondary test-error-btn" data-tab="webhooks"
+              data-code="CW_ERR_INVALID_WEBHOOK_SIGNATURE" style="font-size:0.8rem; padding:6px 14px;">
               Simulate Error in Sandbox ↗
             </button>
           </div>
@@ -149,13 +170,17 @@
           </div>
           <h3 class="error-title">Wallet Balance Lower than Order Total</h3>
           <p class="error-cause">
-            The wallet does not have enough unencumbered funds to cover the subscription amount plus fund manager stamp duty (0.15%).
+            The wallet does not have enough unencumbered funds to cover the subscription amount plus fund manager stamp
+            duty (0.15%).
           </p>
           <div class="error-fix">
-            <strong>Remediation:</strong> Query <code>GET /api/v1/wallets/:id</code> to inspect <code>available_balance</code> before submitting order execution. Direct user to fund wallet via virtual account transfer.
+            <strong>Remediation:</strong> Query <code>GET /api/v1/wallets/:id</code> to inspect
+            <code>available_balance</code> before submitting order execution. Direct user to fund wallet via virtual
+            account transfer.
           </div>
           <div class="error-action-row">
-            <button class="btn-secondary test-error-btn" data-tab="investing" data-code="CW_ERR_INSUFFICIENT_FUNDS" style="font-size:0.8rem; padding:6px 14px;">
+            <button class="btn-secondary test-error-btn" data-tab="investing" data-code="CW_ERR_INSUFFICIENT_FUNDS"
+              style="font-size:0.8rem; padding:6px 14px;">
               Simulate Error in Sandbox ↗
             </button>
           </div>
@@ -169,13 +194,16 @@
           </div>
           <h3 class="error-title">Customer Name Does Not Match BVN Record</h3>
           <p class="error-cause">
-            The first and last name provided during account creation differs significantly from the full legal name registered under the BVN at NIBSS.
+            The first and last name provided during account creation differs significantly from the full legal name
+            registered under the BVN at NIBSS.
           </p>
           <div class="error-fix">
-            <strong>Remediation:</strong> Ask the user to confirm their name as spelled on their official bank app or national NIN card, or initiate a Tier-2 document verification workflow with government ID upload.
+            <strong>Remediation:</strong> Ask the user to confirm their name as spelled on their official bank app or
+            national NIN card, or initiate a Tier-2 document verification workflow with government ID upload.
           </div>
           <div class="error-action-row">
-            <button class="btn-secondary test-error-btn" data-tab="onboarding" data-code="CW_ERR_KYC_NAME_MISMATCH" style="font-size:0.8rem; padding:6px 14px;">
+            <button class="btn-secondary test-error-btn" data-tab="onboarding" data-code="CW_ERR_KYC_NAME_MISMATCH"
+              style="font-size:0.8rem; padding:6px 14px;">
               Simulate Error in Sandbox ↗
             </button>
           </div>
@@ -185,17 +213,22 @@
         <div class="error-card" data-category="security" data-code="CW_ERR_RATE_LIMIT_EXCEEDED">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
             <span class="error-badge">CW_ERR_RATE_LIMIT_EXCEEDED</span>
-            <span class="status-badge status-429" style="background:#FEF3C7; color:#B45309; border:1px solid #FDE68A;">HTTP 429</span>
+            <span class="status-badge status-429"
+              style="background:#FEF3C7; color:#B45309; border:1px solid #FDE68A;">HTTP 429</span>
           </div>
           <h3 class="error-title">API Burst Rate Limit Exceeded</h3>
           <p class="error-cause">
-            Your integration exceeded the limit of 120 requests/minute in the sandbox environment, or sent multiple concurrent duplicate calls without an idempotency key.
+            Your integration exceeded the limit of 120 requests/minute in the sandbox environment, or sent multiple
+            concurrent duplicate calls without an idempotency key.
           </p>
           <div class="error-fix">
-            <strong>Remediation:</strong> Implement an exponential backoff retry mechanism (using HTTP headers <code>Retry-After</code>) and always attach unique <code>Idempotency-Key</code> headers to mutating POST requests.
+            <strong>Remediation:</strong> Implement an exponential backoff retry mechanism (using HTTP headers
+            <code>Retry-After</code>) and always attach unique <code>Idempotency-Key</code> headers to mutating POST
+            requests.
           </div>
           <div class="error-action-row">
-            <button class="btn-secondary test-error-btn" data-tab="webhooks" data-code="CW_ERR_RATE_LIMIT_EXCEEDED" style="font-size:0.8rem; padding:6px 14px;">
+            <button class="btn-secondary test-error-btn" data-tab="webhooks" data-code="CW_ERR_RATE_LIMIT_EXCEEDED"
+              style="font-size:0.8rem; padding:6px 14px;">
               Simulate Error in Sandbox ↗
             </button>
           </div>
@@ -283,4 +316,5 @@
     });
   </script>
 </body>
+
 </html>

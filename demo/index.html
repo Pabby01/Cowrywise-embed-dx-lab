@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Cowrywise Embed — Official Developer Starter Pack & 3D Web Showcase</title>
-  <meta name="description" content="Embed investment features into your services. The official developer starter pack, 3D WebGL isometric models, and interactive sandbox for Cowrywise Embed API.">
-  
+  <meta name="description"
+    content="Embed investment features into your services. The official developer starter pack, 3D WebGL isometric models, and interactive sandbox for Cowrywise Embed API.">
+
   <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
   <script src="icons.js"></script>
   <script src="three.min.js"></script>
 </head>
+
 <body>
 
   <!-- Toast Notification Container -->
@@ -26,7 +31,7 @@
       <a href="index.html" class="logo-brand">
         <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
         <span class="logo-wordmark">cowrywise</span>
-        <span class="brand-badge">Embed DX Lab</span>
+
       </a>
 
       <nav class="nav-links">
@@ -53,7 +58,8 @@
           Integrate investment features into your <span class="blue-highlight">services</span>
         </h1>
         <p class="hero-desc">
-          Embed investment features into your services and connect your customers to high-quality investment products that enable them to grow and manage their money.
+          Embed investment features into your services and connect your customers to high-quality investment products
+          that enable them to grow and manage their money.
         </p>
         <div class="hero-actions">
           <a href="simulation.html" class="btn-primary">Launch Interactive Sandbox ↗</a>
@@ -68,7 +74,11 @@
         <!-- Floating 3D Stat Badges Overlay (Using SVG Icons, No Emojis) -->
         <div class="floating-badge badge-top-left">
           <div class="badge-icon-wrap blue">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
+              <path d="M18 12a2 2 0 0 0 0 4h4v-4z" />
+            </svg>
           </div>
           <div class="badge-content">
             <small>Wallet Balance</small>
@@ -78,7 +88,10 @@
 
         <div class="floating-badge badge-mid-right">
           <div class="badge-icon-wrap green">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
           </div>
           <div class="badge-content">
             <small>Est. Return</small>
@@ -88,7 +101,10 @@
 
         <div class="floating-badge badge-bottom-right">
           <div class="badge-icon-wrap gold">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
           </div>
           <div class="badge-content">
             <small>KYC Status</small>
@@ -114,11 +130,15 @@
         <!-- Pathway 1 -->
         <div class="template-card">
           <div class="template-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5" />
+              <line x1="12" y1="19" x2="20" y2="19" />
+            </svg>
           </div>
           <h3 class="template-title">Interactive Live Sandbox</h3>
           <p class="template-desc">
-            Test live API requests with editable payloads, real-time HTTP response inspection, and event streaming console.
+            Test live API requests with editable payloads, real-time HTTP response inspection, and event streaming
+            console.
           </p>
           <a href="simulation.html" class="btn-primary" style="justify-content:center;">Open Simulation Console ↗</a>
         </div>
@@ -126,11 +146,19 @@
         <!-- Pathway 2 -->
         <div class="template-card">
           <div class="template-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" y1="21" x2="4" y2="14" />
+              <line x1="4" y1="10" x2="4" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12" y2="3" />
+              <line x1="20" y1="21" x2="20" y2="16" />
+              <line x1="20" y1="12" x2="20" y2="3" />
+            </svg>
           </div>
           <h3 class="template-title">3D Component Templates</h3>
           <p class="template-desc">
-            Drop-in UI widgets: "Invest with Cowrywise" modal, spare change round-ups, and disciplined savings milestone cards.
+            Drop-in UI widgets: "Invest with Cowrywise" modal, spare change round-ups, and disciplined savings milestone
+            cards.
           </p>
           <a href="templates.html" class="btn-secondary" style="justify-content:center;">Explore UI Templates ↗</a>
         </div>
@@ -138,11 +166,16 @@
         <!-- Pathway 3 -->
         <div class="template-card">
           <div class="template-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
           </div>
           <h3 class="template-title">Troubleshooting Matrix</h3>
           <p class="template-desc">
-            Actionable diagnostics and solutions for common integration blockers like BVN checks, webhooks, and 24h cooling-off periods.
+            Actionable diagnostics and solutions for common integration blockers like BVN checks, webhooks, and 24h
+            cooling-off periods.
           </p>
           <a href="troubleshooting.html" class="btn-secondary" style="justify-content:center;">View Error Catalog ↗</a>
         </div>
@@ -191,15 +224,18 @@
               </div>
               <span style="color:#64748B; font-size:0.75rem; font-family:var(--font-code);">HTTP Response Body</span>
             </div>
-            <pre class="response-json-view"><code id="response-json-display">{\n  "message": "Ready to test live requests."\n}</code></pre>
-            
+            <pre
+              class="response-json-view"><code id="response-json-display">{\n  "message": "Ready to test live requests."\n}</code></pre>
+
             <div class="code-panel-header">
               <div class="lang-switch">
                 <button class="lang-btn active" data-lang="node">Node.js (SDK)</button>
                 <button class="lang-btn" data-lang="python">Python</button>
                 <button class="lang-btn" data-lang="curl">cURL</button>
               </div>
-              <button id="copy-code-btn" class="btn-secondary" style="padding:4px 10px; font-size:0.75rem; background:rgba(255,255,255,0.08); color:white; border-color:rgba(255,255,255,0.15);">Copy Code</button>
+              <button id="copy-code-btn" class="btn-secondary"
+                style="padding:4px 10px; font-size:0.75rem; background:rgba(255,255,255,0.08); color:white; border-color:rgba(255,255,255,0.15);">Copy
+                Code</button>
             </div>
             <pre class="code-output"><code id="code-display">// Initializing code snippet...</code></pre>
           </div>
@@ -234,4 +270,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
