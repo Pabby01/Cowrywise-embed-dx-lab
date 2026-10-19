@@ -30,7 +30,7 @@
       <a href="index.html" class="logo-brand">
         <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
         <span class="logo-wordmark">cowrywise</span>
-        <span class="brand-badge">Embed DX</span>
+
       </a>
 
       <nav class="nav-links">
@@ -63,7 +63,8 @@
       <a href="integrations.html" class="mobile-nav-link">Integration Scenarios</a>
       <a href="webhooks.html" class="mobile-nav-link active">Webhooks & Security</a>
       <a href="checklist.html" class="mobile-nav-link">Go-Live Checklist</a>
-      <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="mobile-nav-link">GitHub Repository ↗</a>
+      <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="mobile-nav-link">GitHub
+        Repository ↗</a>
     </div>
   </header>
 
@@ -81,7 +82,8 @@
         Webhook Architecture & HMAC Security
       </h1>
       <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
-        Real-time asynchronous event notifications, constant-time signature verification, idempotency handling in Redis/SQL, and local testing configurations.
+        Real-time asynchronous event notifications, constant-time signature verification, idempotency handling in
+        Redis/SQL, and local testing configurations.
       </p>
     </div>
   </section>
@@ -195,32 +197,40 @@
               </thead>
               <tbody>
                 <tr style="border-bottom:1px solid #E2E8F0;">
-                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">account.created</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">
+                    account.created</td>
                   <td style="padding:12px 14px;">New investor account registered</td>
                   <td style="padding:12px 14px;">Record user reference and unlock KYC submission UI</td>
                 </tr>
                 <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
-                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">identity.verified</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">
+                    identity.verified</td>
                   <td style="padding:12px 14px;">BVN/NIN verification passed Tier-1 checks</td>
                   <td style="padding:12px 14px;">Unlock investment wallet funding & mutual funds catalog</td>
                 </tr>
                 <tr style="border-bottom:1px solid #E2E8F0;">
-                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-emerald); font-weight:700;">wallet.funded</td>
+                  <td
+                    style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-emerald); font-weight:700;">
+                    wallet.funded</td>
                   <td style="padding:12px 14px;">Customer deposit received via virtual account</td>
                   <td style="padding:12px 14px;">Credit user balance & execute pending mutual fund orders</td>
                 </tr>
                 <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
-                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">investment.created</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">
+                    investment.created</td>
                   <td style="padding:12px 14px;">Mutual fund units or savings plan allocated</td>
                   <td style="padding:12px 14px;">Update portfolio balance card & send transaction receipt</td>
                 </tr>
                 <tr style="border-bottom:1px solid #E2E8F0;">
-                  <td style="padding:12px 14px; font-family:var(--font-code); color:#D97706; font-weight:700;">withdrawal.requested</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:#D97706; font-weight:700;">
+                    withdrawal.requested</td>
                   <td style="padding:12px 14px;">Liquidation / payout initiated by customer</td>
                   <td style="padding:12px 14px;">Display regulatory 24-hour cooling-off countdown timer</td>
                 </tr>
                 <tr>
-                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-emerald); font-weight:700;">withdrawal.completed</td>
+                  <td
+                    style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-emerald); font-weight:700;">
+                    withdrawal.completed</td>
                   <td style="padding:12px 14px;">Funds disbursed to customer's recipient commercial bank</td>
                   <td style="padding:12px 14px;">Mark liquidation settled and notify customer via push</td>
                 </tr>
@@ -230,7 +240,8 @@
 
           <h2>2. Webhook Payload Anatomy</h2>
           <p>
-            Every incoming HTTP POST request from Cowrywise contains the cryptographic <code>signature</code> and an <code>event</code> envelope:
+            Every incoming HTTP POST request from Cowrywise contains the cryptographic <code>signature</code> and an
+            <code>event</code> envelope:
           </p>
 
           <div class="docs-code-box">
@@ -385,11 +396,15 @@ def handle_webhook():
           <ol>
             <li>
               <strong>Acknowledge Fast (HTTP 200 within 3 seconds):</strong>
-              Do not perform heavy database aggregations or external network calls directly inside the HTTP webhook endpoint. Immediately enqueue the event into BullMQ, Celery, AWS SQS, or RabbitMQ and return <code>200 OK</code>.
+              Do not perform heavy database aggregations or external network calls directly inside the HTTP webhook
+              endpoint. Immediately enqueue the event into BullMQ, Celery, AWS SQS, or RabbitMQ and return
+              <code>200 OK</code>.
             </li>
             <li>
               <strong>Idempotency via Unique Transaction References:</strong>
-              Network retries may cause duplicate delivery of webhooks. Store processed transaction references (e.g. <code>event.data.reference</code>) in Redis or a PostgreSQL table with a UNIQUE constraint. If already seen, return <code>200 OK</code> immediately without re-crediting balances.
+              Network retries may cause duplicate delivery of webhooks. Store processed transaction references (e.g.
+              <code>event.data.reference</code>) in Redis or a PostgreSQL table with a UNIQUE constraint. If already
+              seen, return <code>200 OK</code> immediately without re-crediting balances.
             </li>
             <li>
               <strong>Local Testing with Tunneling:</strong>
@@ -397,7 +412,8 @@ def handle_webhook():
               <div class="docs-code-box" style="margin: 12px 0;">
                 <div class="docs-code-bar">
                   <span>bash — tunnel command</span>
-                  <button type="button" class="btn-copy-code" data-code="npx localtunnel --port 3000">Copy Command</button>
+                  <button type="button" class="btn-copy-code" data-code="npx localtunnel --port 3000">Copy
+                    Command</button>
                 </div>
                 <pre class="docs-code-pre"><code>npx localtunnel --port 3000
 # or using ngrok:
@@ -407,7 +423,8 @@ ngrok http 3000</code></pre>
           </ol>
 
           <div style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
-            <a href="simulation.html?tab=webhooks" class="btn-primary" style="padding:12px 24px;">Simulate Webhook in Sandbox →</a>
+            <a href="simulation.html?tab=webhooks" class="btn-primary" style="padding:12px 24px;">Simulate Webhook in
+              Sandbox →</a>
             <a href="checklist.html" class="btn-secondary" style="padding:12px 24px;">Pre-Live Security Checklist →</a>
           </div>
         </article>
@@ -425,7 +442,7 @@ ngrok http 3000</code></pre>
           <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
             <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
             <span class="logo-wordmark">cowrywise</span>
-            <span class="brand-badge">Embed DX</span>
+
           </a>
           <p class="footer-desc">
             The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
@@ -466,11 +483,15 @@ ngrok http 3000</code></pre>
         <div class="footer-col">
           <h4 class="footer-heading">Official Resources</h4>
           <ul class="footer-links">
-            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
-            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
-            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a>
+            </li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official
+                @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python
+                SDK) ↗</a></li>
             <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
-            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub
+                Repo ↗</a></li>
           </ul>
         </div>
       </div>

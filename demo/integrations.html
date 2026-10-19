@@ -30,7 +30,7 @@
       <a href="index.html" class="logo-brand">
         <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
         <span class="logo-wordmark">cowrywise</span>
-        <span class="brand-badge">Embed DX</span>
+
       </a>
 
       <nav class="nav-links">
@@ -63,7 +63,8 @@
       <a href="integrations.html" class="mobile-nav-link active">Integration Scenarios</a>
       <a href="webhooks.html" class="mobile-nav-link">Webhooks & Security</a>
       <a href="checklist.html" class="mobile-nav-link">Go-Live Checklist</a>
-      <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="mobile-nav-link">GitHub Repository ↗</a>
+      <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="mobile-nav-link">GitHub
+        Repository ↗</a>
     </div>
   </header>
 
@@ -81,7 +82,8 @@
         Real-World Integration Scenarios
       </h1>
       <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
-        Detailed production architectures showing how Neobanks, HR/Payroll platforms, and E-commerce retailers embed Cowrywise wealth features to increase user retention and customer lifetime value.
+        Detailed production architectures showing how Neobanks, HR/Payroll platforms, and E-commerce retailers embed
+        Cowrywise wealth features to increase user retention and customer lifetime value.
       </p>
     </div>
   </section>
@@ -182,75 +184,98 @@
           <h2 id="scenario-1">Scenario 1: Neobank & Consumer Fintech SuperApp</h2>
           <h3>Context & Business Goal</h3>
           <p>
-            A digital banking app with 500,000 active retail accounts wants to increase user retention and deposit stickiness by offering automated high-yield savings and mutual fund investments directly from their primary checking balance.
+            A digital banking app with 500,000 active retail accounts wants to increase user retention and deposit
+            stickiness by offering automated high-yield savings and mutual fund investments directly from their primary
+            checking balance.
           </p>
 
           <h3>Architecture & Data Flow</h3>
           <ol>
             <li>
-              <strong>Unified KYC Propagation:</strong> Since the neobank has already performed BVN verification during customer onboarding, their backend automatically provisions a Cowrywise account via <code>api.accounts.createAccount()</code> and verifies identity via <code>api.accounts.updateIdentity()</code> in a background worker, removing redundant customer friction.
+              <strong>Unified KYC Propagation:</strong> Since the neobank has already performed BVN verification during
+              customer onboarding, their backend automatically provisions a Cowrywise account via
+              <code>api.accounts.createAccount()</code> and verifies identity via
+              <code>api.accounts.updateIdentity()</code> in a background worker, removing redundant customer friction.
             </li>
             <li>
               <strong>Automated "Round-Up" Savings:</strong>
               <ul>
-                <li>Every time a customer spends using their debit card (e.g., spending ₦1,420 at a supermarket), the system rounds up to the nearest ₦100 (₦80 spare change difference).</li>
-                <li>Once accumulated spare change hits ₦1,000, the app funds the user's investment wallet and triggers an automated buy order into the <code>Cowrywise Money Market Fund</code>.</li>
+                <li>Every time a customer spends using their debit card (e.g., spending ₦1,420 at a supermarket), the
+                  system rounds up to the nearest ₦100 (₦80 spare change difference).</li>
+                <li>Once accumulated spare change hits ₦1,000, the app funds the user's investment wallet and triggers
+                  an automated buy order into the <code>Cowrywise Money Market Fund</code>.</li>
               </ul>
             </li>
             <li>
-              <strong>Consolidated In-App Net Worth Card:</strong> The mobile app queries <code>getPortfolioSummary()</code> to render a consolidated net-worth breakdown directly beside the user's active checking account balance.
+              <strong>Consolidated In-App Net Worth Card:</strong> The mobile app queries
+              <code>getPortfolioSummary()</code> to render a consolidated net-worth breakdown directly beside the user's
+              active checking account balance.
             </li>
           </ol>
 
           <div class="docs-callout">
-            <strong>Key Benefit:</strong> Customers keep higher balances within the neobank ecosystem rather than transferring funds out to competing wealth management apps.
+            <strong>Key Benefit:</strong> Customers keep higher balances within the neobank ecosystem rather than
+            transferring funds out to competing wealth management apps.
           </div>
 
           <h2 id="scenario-2">Scenario 2: HR Tech / Payroll & Remuneration Platform</h2>
           <h3>Context & Business Goal</h3>
           <p>
-            A modern B2B SaaS payroll provider wants to empower corporate employees to automatically split their monthly net salaries into disciplined wealth products before the funds reach their retail bank accounts ("Pay Yourself First").
+            A modern B2B SaaS payroll provider wants to empower corporate employees to automatically split their monthly
+            net salaries into disciplined wealth products before the funds reach their retail bank accounts ("Pay
+            Yourself First").
           </p>
 
           <h3>Architecture & Data Flow</h3>
           <ol>
             <li>
               <strong>Employee Opt-In & Allocation Slider:</strong>
-              In the employee self-service portal, employees configure a monthly wealth allocation (e.g. 10% to Emergency Savings, 15% to Sovereign Eurobonds, 75% to liquid checking).
+              In the employee self-service portal, employees configure a monthly wealth allocation (e.g. 10% to
+              Emergency Savings, 15% to Sovereign Eurobonds, 75% to liquid checking).
             </li>
             <li>
               <strong>Direct Payroll Split via Virtual Accounts:</strong>
               <ul>
-                <li>On payday, the employer disburses the designated 25% directly to Cowrywise Embed wallets via dedicated virtual accounts.</li>
+                <li>On payday, the employer disburses the designated 25% directly to Cowrywise Embed wallets via
+                  dedicated virtual accounts.</li>
                 <li>The payroll platform listens for the <code>wallet.funded</code> webhook event.</li>
-                <li>Upon receiving the webhook, the platform automatically calls <code>api.savings.createSavingsPlan()</code> and <code>api.assets.investInAsset()</code> on behalf of each participating employee.</li>
+                <li>Upon receiving the webhook, the platform automatically calls
+                  <code>api.savings.createSavingsPlan()</code> and <code>api.assets.investInAsset()</code> on behalf of
+                  each participating employee.
+                </li>
               </ul>
             </li>
             <li>
               <strong>Tax & Regulatory Reporting:</strong>
-              Employees download a certified annual statement showing interest earnings and capital gains for statutory tax returns.
+              Employees download a certified annual statement showing interest earnings and capital gains for statutory
+              tax returns.
             </li>
           </ol>
 
           <h2 id="scenario-3">Scenario 3: E-Commerce & Retail Loyalty Rewards ("Wealthback")</h2>
           <h3>Context & Business Goal</h3>
           <p>
-            A high-volume retail marketplace replaces traditional points-based loyalty cards with "Wealthback" — converting merchant cashbacks and reward points into fractional government Treasury Bills and mutual fund units.
+            A high-volume retail marketplace replaces traditional points-based loyalty cards with "Wealthback" —
+            converting merchant cashbacks and reward points into fractional government Treasury Bills and mutual fund
+            units.
           </p>
 
           <h3>Architecture & Data Flow</h3>
           <ol>
             <li>
               <strong>Fractional Wealthback Rewards:</strong>
-              When a customer completes a purchase, the merchant issues 2% cashback. Rather than expiring store credit, the reward balance accumulates in an escrow wallet.
+              When a customer completes a purchase, the merchant issues 2% cashback. Rather than expiring store credit,
+              the reward balance accumulates in an escrow wallet.
             </li>
             <li>
               <strong>Automatic Threshold Investment:</strong>
-              When rewards reach ₦1,000 for money market funds or ₦5,000 for equity index funds, the platform sweeps the funds into the customer's Cowrywise account.
+              When rewards reach ₦1,000 for money market funds or ₦5,000 for equity index funds, the platform sweeps the
+              funds into the customer's Cowrywise account.
             </li>
             <li>
               <strong>Gamification & Growth Loop:</strong>
-              Users open the marketplace weekly to observe their cashback growing through compound interest, drastically increasing monthly active users (MAU).
+              Users open the marketplace weekly to observe their cashback growing through compound interest, drastically
+              increasing monthly active users (MAU).
             </li>
           </ol>
 
@@ -269,20 +294,24 @@
                 <tr style="border-bottom:1px solid #E2E8F0;">
                   <td style="padding:12px 14px; font-weight:700; color:var(--cw-title);">Neobank SuperApp</td>
                   <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">/wallets, /assets</td>
-                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">wallet.funded, prices.updated</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">wallet.funded,
+                    prices.updated</td>
                   <td style="padding:12px 14px; color:var(--cw-body);">Batch micro-funding fees & unit rounding</td>
                 </tr>
                 <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
                   <td style="padding:12px 14px; font-weight:700; color:var(--cw-title);">HR / Payroll Split</td>
                   <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">/savings, /wallets</td>
-                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">wallet.funded, savings.matured</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">wallet.funded,
+                    savings.matured</td>
                   <td style="padding:12px 14px; color:var(--cw-body);">Enforce minimum 3-month tenure lock</td>
                 </tr>
                 <tr>
                   <td style="padding:12px 14px; font-weight:700; color:var(--cw-title);">E-Commerce Wealthback</td>
                   <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">/accounts, /assets</td>
-                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">investment.created, identity.verified</td>
-                  <td style="padding:12px 14px; color:var(--cw-body);">Defer account creation until threshold is hit</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">investment.created,
+                    identity.verified</td>
+                  <td style="padding:12px 14px; color:var(--cw-body);">Defer account creation until threshold is hit
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -307,7 +336,7 @@
           <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
             <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
             <span class="logo-wordmark">cowrywise</span>
-            <span class="brand-badge">Embed DX</span>
+
           </a>
           <p class="footer-desc">
             The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
@@ -348,11 +377,15 @@
         <div class="footer-col">
           <h4 class="footer-heading">Official Resources</h4>
           <ul class="footer-links">
-            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
-            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
-            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a>
+            </li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official
+                @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python
+                SDK) ↗</a></li>
             <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
-            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub
+                Repo ↗</a></li>
           </ul>
         </div>
       </div>

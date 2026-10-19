@@ -30,7 +30,7 @@
       <a href="index.html" class="logo-brand">
         <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
         <span class="logo-wordmark">cowrywise</span>
-        <span class="brand-badge">Embed DX</span>
+
       </a>
 
       <nav class="nav-links">
@@ -63,7 +63,8 @@
       <a href="integrations.html" class="mobile-nav-link">Integration Scenarios</a>
       <a href="webhooks.html" class="mobile-nav-link">Webhooks & Security</a>
       <a href="checklist.html" class="mobile-nav-link">Go-Live Checklist</a>
-      <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="mobile-nav-link">GitHub Repository ↗</a>
+      <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="mobile-nav-link">GitHub
+        Repository ↗</a>
     </div>
   </header>
 
@@ -81,7 +82,8 @@
         Cowrywise Embed Quickstart: 0 to 1 in 5 Minutes
       </h1>
       <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
-        From initial SDK installation to creating accounts, completing Tier-1 BVN identity verification, funding wallets, and purchasing your first mutual fund units.
+        From initial SDK installation to creating accounts, completing Tier-1 BVN identity verification, funding
+        wallets, and purchasing your first mutual fund units.
       </p>
     </div>
   </section>
@@ -184,13 +186,18 @@
             Before integrating with Cowrywise Embed in production or sandbox:
           </p>
           <ol>
-            <li><strong>Developer Portal Account:</strong> Request early access at <a href="https://developers.cowrywise.com" target="_blank">developers.cowrywise.com</a>.</li>
-            <li><strong>Sandbox API Credentials:</strong> Obtain your <code>client_id</code> and <code>client_secret</code> from the partner dashboard.</li>
+            <li><strong>Developer Portal Account:</strong> Request early access at <a
+                href="https://developers.cowrywise.com" target="_blank">developers.cowrywise.com</a>.</li>
+            <li><strong>Sandbox API Credentials:</strong> Obtain your <code>client_id</code> and
+              <code>client_secret</code> from the partner dashboard.
+            </li>
             <li><strong>Node.js Environment:</strong> Node.js version 18.x or 20.x (LTS recommended).</li>
           </ol>
 
           <div class="docs-callout security">
-            <strong>🔒 Server-Side Security Rule:</strong> Your <code>client_secret</code> must <strong>never</strong> be exposed in frontend client-side bundles (React, Vue, mobile apps, or public Git repos). All calls to the Cowrywise Embed API must be made from your secure backend server.
+            <strong>🔒 Server-Side Security Rule:</strong> Your <code>client_secret</code> must <strong>never</strong>
+            be exposed in frontend client-side bundles (React, Vue, mobile apps, or public Git repos). All calls to the
+            Cowrywise Embed API must be made from your secure backend server.
           </div>
 
           <h2>2. Installation</h2>
@@ -201,7 +208,8 @@
           <div class="docs-code-box">
             <div class="docs-code-bar">
               <span>bash — npm install</span>
-              <button type="button" class="btn-copy-code" data-code="npm install @cowrywise/embed-node">Copy Command</button>
+              <button type="button" class="btn-copy-code" data-code="npm install @cowrywise/embed-node">Copy
+                Command</button>
             </div>
             <pre class="docs-code-pre"><code>npm install @cowrywise/embed-node
 # or using yarn
@@ -215,7 +223,9 @@ yarn add @cowrywise/embed-node</code></pre>
           <div class="docs-code-box">
             <div class="docs-code-bar">
               <span>bash — clone starter lab</span>
-              <button type="button" class="btn-copy-code" data-code="git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab && npm install && npm run demo">Copy Command</button>
+              <button type="button" class="btn-copy-code"
+                data-code="git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab && npm install && npm run demo">Copy
+                Command</button>
             </div>
             <pre class="docs-code-pre"><code>git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git
 cd cowrywise-embed-dx-lab
@@ -287,7 +297,8 @@ console.log("Account created:", account.account_id);
 
           <h3>Step 2: Verify Identity (Tier-1 BVN KYC)</h3>
           <p>
-            Nigerian regulatory compliance mandates Bank Verification Number (BVN) validation. In the sandbox environment, use the standard test BVN <code>22222222281</code>:
+            Nigerian regulatory compliance mandates Bank Verification Number (BVN) validation. In the sandbox
+            environment, use the standard test BVN <code>22222222281</code>:
           </p>
 
           <div class="docs-code-box">
@@ -384,7 +395,8 @@ console.log(`Plan active until ${savingsPlan.maturity_date}`);</code></pre>
 
           <h2>5. Webhook Signature Verification</h2>
           <p>
-            Cowrywise sends real-time webhooks for asynchronous events (e.g. <code>wallet.funded</code>, <code>withdrawal.completed</code>).
+            Cowrywise sends real-time webhooks for asynchronous events (e.g. <code>wallet.funded</code>,
+            <code>withdrawal.completed</code>).
             Always verify incoming signatures using constant-time HMAC SHA-256:
           </p>
 
@@ -453,7 +465,7 @@ export function verifyWebhook(
           <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
             <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
             <span class="logo-wordmark">cowrywise</span>
-            <span class="brand-badge">Embed DX</span>
+
           </a>
           <p class="footer-desc">
             The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
@@ -494,11 +506,15 @@ export function verifyWebhook(
         <div class="footer-col">
           <h4 class="footer-heading">Official Resources</h4>
           <ul class="footer-links">
-            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
-            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
-            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a>
+            </li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official
+                @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python
+                SDK) ↗</a></li>
             <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
-            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub
+                Repo ↗</a></li>
           </ul>
         </div>
       </div>
