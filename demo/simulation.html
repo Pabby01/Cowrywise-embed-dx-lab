@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Live API Simulation & Developer Console — Cowrywise Embed</title>
+  <meta name="description" content="Test Cowrywise Embed API endpoints live with editable parameters, real-time HTTP response inspector, and event stream console.">
+  
+  <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js"></script>
+</head>
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo-brand">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+        <span class="logo-wordmark">cowrywise</span>
+        <span class="brand-badge">Embed DX Lab</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="simulation.html" class="active">Live Sandbox</a>
+        <a href="templates.html">3D Templates</a>
+        <a href="flows.html">Architecture Flows</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sub-page Banner -->
+  <section class="page-hero-banner">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Overview</a>
+        <span>/</span>
+        <span style="color:var(--cw-blue); font-weight:600;">Interactive Sandbox</span>
+      </div>
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:10px;">
+        Live API Simulation Playground
+      </h1>
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:680px;">
+        Edit parameters, execute simulated requests against our safe in-memory engine, and observe real-time HTTP responses and event logs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Simulation Content -->
+  <main class="section">
+    <div class="container">
+      
+      <!-- Scenario Tabs -->
+      <div class="sandbox-nav" style="border-radius:12px 12px 0 0; border:1px solid var(--border-card); border-bottom:none;">
+        <button class="sandbox-tab active" data-tab="onboarding">
+          <span>1. Customer KYC & BVN</span>
+        </button>
+        <button class="sandbox-tab" data-tab="investing">
+          <span>2. Wallets & Mutual Funds</span>
+        </button>
+        <button class="sandbox-tab" data-tab="savings">
+          <span>3. Locked Savings Plans</span>
+        </button>
+        <button class="sandbox-tab" data-tab="webhooks">
+          <span>4. Webhooks & HMAC Verifier</span>
+        </button>
+      </div>
+
+      <!-- Main Two-Column Layout -->
+      <div class="simulation-layout">
+        <!-- Left: Editable Request Builder -->
+        <div class="sim-card">
+          <div class="sim-card-header">
+            <div class="sim-card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+              <span>Editable Request Parameters</span>
+            </div>
+            <span class="badge-sandbox-hint">Live Interactive Mock</span>
+          </div>
+          <div class="sim-card-body" id="sandbox-interactive-content">
+            <!-- Dynamic interactive forms via app.js -->
+          </div>
+        </div>
+
+        <!-- Right: Real-Time HTTP Response Inspector -->
+        <div class="sim-card" style="display:flex; flex-direction:column; background:var(--code-bg); border-color:var(--code-border);">
+          <div class="response-box-header">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span class="status-badge status-200" id="response-status-badge">200 OK</span>
+              <span class="latency-badge" id="response-latency">114ms</span>
+            </div>
+            <span style="color:#64748B; font-size:0.78rem; font-family:var(--font-code);">HTTP/1.1 Live Response</span>
+          </div>
+          <pre class="response-json-view" style="flex:1;"><code id="response-json-display">{\n  "message": "Ready to test live requests. Select a flow and click Send Request."\n}</code></pre>
+          
+          <div class="code-panel-header">
+            <div class="lang-switch">
+              <button class="lang-btn active" data-lang="node">Node.js (SDK)</button>
+              <button class="lang-btn" data-lang="python">Python</button>
+              <button class="lang-btn" data-lang="curl">cURL</button>
+            </div>
+            <button id="copy-code-btn" class="btn-secondary" style="padding:4px 10px; font-size:0.75rem; background:rgba(255,255,255,0.08); color:white; border-color:rgba(255,255,255,0.15);">Copy Snippet</button>
+          </div>
+          <pre class="code-output" style="max-height:180px;"><code id="code-display">// Initializing code snippet...</code></pre>
+        </div>
+      </div>
+
+      <!-- Real-Time Event Stream Console -->
+      <div class="live-console-wrap">
+        <div class="console-topbar">
+          <div class="console-title">
+            <span class="console-title-indicator"></span>
+            <span>Real-Time Developer Event Stream Console</span>
+          </div>
+          <button id="btn-clear-console" class="btn-secondary" style="padding:4px 12px; font-size:0.75rem; background:rgba(255,255,255,0.08); color:#CBD5E1; border-color:rgba(255,255,255,0.12);">
+            Clear Logs
+          </button>
+        </div>
+        <div class="console-stream" id="console-stream">
+          <!-- Real-time logs appended dynamically -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:12px;">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise" style="width:28px; height:28px; border-radius:50%;" />
+        <strong style="color:var(--cw-title); font-size:1.1rem;">Cowrywise Embed Developer Experience Lab</strong>
+      </div>
+      <p style="margin-bottom:8px;">
+        Independent case study and interactive starter pack prepared by Adeola Lasisi.
+      </p>
+      <p>
+        <a href="https://developers.cowrywise.com" target="_blank">Official Cowrywise Docs</a> •
+        <a href="https://github.com/cowrywise/embed-node" target="_blank">Official Node SDK</a> •
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank">GitHub Repository</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

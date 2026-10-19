@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Architecture Flows & Sequence Diagrams — Cowrywise Embed</title>
+  <meta name="description" content="Detailed architectural walkthroughs, sequence diagrams, and regulatory lifecycle rules for integrating Cowrywise Embed API.">
+  
+  <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js"></script>
+</head>
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo-brand">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+        <span class="logo-wordmark">cowrywise</span>
+        <span class="brand-badge">Embed DX Lab</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="simulation.html">Live Sandbox</a>
+        <a href="templates.html">3D Templates</a>
+        <a href="flows.html" class="active">Architecture Flows</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="simulation.html" class="btn-primary">Launch Sandbox ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sub-page Banner -->
+  <section class="page-hero-banner">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Overview</a>
+        <span>/</span>
+        <span style="color:var(--cw-blue); font-weight:600;">Architecture Flows</span>
+      </div>
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:10px;">
+        Integration Lifecycles & Sequence Architecture
+      </h1>
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:720px;">
+        Step-by-step technical blueprints for building resilient investment applications with Cowrywise Embed. Follow SEC-compliant lifecycles from customer identity to asynchronous settlements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="section">
+    <div class="container">
+
+      <!-- Flow Selector Tabs -->
+      <div class="flow-tabs">
+        <button class="flow-tab-btn active" data-flow="kyc">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>1. Customer KYC & Identity</span>
+        </button>
+        <button class="flow-tab-btn" data-flow="funding">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+          <span>2. Wallet & Funding Lifecycle</span>
+        </button>
+        <button class="flow-tab-btn" data-flow="cooling">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>3. 24h Cooling-Off Rule</span>
+        </button>
+        <button class="flow-tab-btn" data-flow="webhooks">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span>4. HMAC Webhook Security</span>
+        </button>
+      </div>
+
+      <!-- Flow 1: KYC -->
+      <div class="flow-card-container" id="flow-content-kyc">
+        <div class="flow-card">
+          <div class="flow-card-head">
+            <div>
+              <span class="brand-badge" style="margin-bottom:8px; display:inline-block;">Identity Verification</span>
+              <h2 style="font-size:1.75rem; color:var(--cw-title);">Customer Registration & Tier-1 BVN Provisioning</h2>
+              <p style="color:var(--cw-body); margin-top:4px;">
+                Before any investment or funding can occur, a customer account must be registered and verified via Bank Verification Number (BVN).
+              </p>
+            </div>
+            <a href="simulation.html" class="btn-primary">Test in Live Sandbox ↗</a>
+          </div>
+
+          <!-- Sequence Steps -->
+          <div class="flow-sequence-grid">
+            <div class="sequence-step">
+              <div class="step-num-badge">1</div>
+              <div class="step-title">Create Customer</div>
+              <p class="step-desc">Partner sends client identity attributes (name, email, phone) to register account.</p>
+              <span class="step-endpoint">POST /api/v1/customers</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">2</div>
+              <div class="step-title">Submit BVN Identity</div>
+              <p class="step-desc">Submit 11-digit BVN. Embed verifies name match against NIBSS records.</p>
+              <span class="step-endpoint">POST /api/v1/identity/bvn</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">3</div>
+              <div class="step-title">Auto-Provision Wallet</div>
+              <p class="step-desc">Upon successful BVN match, an investment-ready NGN wallet is instantly provisioned.</p>
+              <span class="step-endpoint">Internal Provisioning</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">4</div>
+              <div class="step-title">Webhook Confirmation</div>
+              <p class="step-desc">Partner server receives HMAC-signed event: <code>customer.verified</code>.</p>
+              <span class="step-endpoint">Webhook: customer.verified</span>
+            </div>
+          </div>
+
+          <!-- Technical Notes -->
+          <div class="flow-info-grid">
+            <div class="flow-callout">
+              <div class="flow-callout-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Regulatory Compliance & Name Matching</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--cw-body); margin-bottom:10px;">
+                Cowrywise operates under SEC-regulated fund management licenses. The name submitted on registration must match the official BVN account name. Minor transliteration differences can be handled via Tier-2 manual document review.
+              </p>
+              <p style="font-size:0.86rem; color:#03684B; font-weight:600;">
+                Sandbox Test BVN: <code>22222222281</code> (Auto-passes name verification)
+              </p>
+            </div>
+
+            <div style="background:var(--code-bg); border-radius:var(--radius-md); padding:16px; border:1px solid var(--code-border);">
+              <div style="font-size:0.75rem; color:#64748B; font-family:var(--font-code); margin-bottom:8px;">// Node.js SDK Implementation</div>
+              <pre style="color:#A7F3D0; font-family:var(--font-code); font-size:0.8rem; overflow-x:auto;"><code>const customer = await client.customers.create({
+  first_name: "Amara",
+  last_name: "Eze",
+  email: "amara.eze@example.ng",
+  phone: "+2348039876543"
+});
+
+const kyc = await client.identity.verifyBVN({
+  customer_id: customer.id,
+  bvn: "22222222281"
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow 2: Funding -->
+      <div class="flow-card-container" id="flow-content-funding" style="display:none;">
+        <div class="flow-card">
+          <div class="flow-card-head">
+            <div>
+              <span class="brand-badge" style="margin-bottom:8px; display:inline-block;">Multi-Currency Wallets</span>
+              <h2 style="font-size:1.75rem; color:var(--cw-title);">Wallet Funding & Dynamic Virtual Account Assignment</h2>
+              <p style="color:var(--cw-body); margin-top:4px;">
+                Wallets are the sole funding source and withdrawal destination on the Cowrywise Embed API.
+              </p>
+            </div>
+            <a href="simulation.html" class="btn-primary">Test in Live Sandbox ↗</a>
+          </div>
+
+          <!-- Sequence Steps -->
+          <div class="flow-sequence-grid">
+            <div class="sequence-step">
+              <div class="step-num-badge">1</div>
+              <div class="step-title">Fetch Dedicated Account</div>
+              <p class="step-desc">Request a reserved virtual bank account (Wema / Providus) for the customer wallet.</p>
+              <span class="step-endpoint">GET /api/v1/wallets/:id/bank</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">2</div>
+              <div class="step-title">Bank Transfer Inbound</div>
+              <p class="step-desc">Customer sends NGN via standard NIP mobile banking transfer to the virtual account.</p>
+              <span class="step-endpoint">NIP Inbound Bank Transfer</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">3</div>
+              <div class="step-title">Instant Wallet Credit</div>
+              <p class="step-desc">Embed credits the customer wallet balance immediately upon NIP notification.</p>
+              <span class="step-endpoint">Ledger Balance Updated</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">4</div>
+              <div class="step-title">Webhook Dispatched</div>
+              <p class="step-desc">Embed fires <code>wallet.funded</code> webhook with transaction reference and amount.</p>
+              <span class="step-endpoint">Webhook: wallet.funded</span>
+            </div>
+          </div>
+
+          <!-- Technical Notes -->
+          <div class="flow-info-grid">
+            <div class="flow-callout">
+              <div class="flow-callout-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Zero Direct Card Charges</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--cw-body); margin-bottom:10px;">
+                Cowrywise Embed avoids card debit processing fees and chargebacks by utilizing direct instant bank transfers via virtual account rails. This guarantees 99.8% payment settlement reliability.
+              </p>
+            </div>
+
+            <div style="background:var(--code-bg); border-radius:var(--radius-md); padding:16px; border:1px solid var(--code-border);">
+              <div style="font-size:0.75rem; color:#64748B; font-family:var(--font-code); margin-bottom:8px;">// Fetch Virtual Bank Account</div>
+              <pre style="color:#A7F3D0; font-family:var(--font-code); font-size:0.8rem; overflow-x:auto;"><code>const bankAccount = await client.wallets.getVirtualAccount({
+  wallet_id: "wlt_01jk98m3p",
+  currency: "NGN"
+});
+
+console.log(`Pay to ${bankAccount.bank_name}: ${bankAccount.account_number}`);</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow 3: Cooling Off -->
+      <div class="flow-card-container" id="flow-content-cooling" style="display:none;">
+        <div class="flow-card">
+          <div class="flow-card-head">
+            <div>
+              <span class="brand-badge" style="margin-bottom:8px; display:inline-block;">Anti-Fraud Protection</span>
+              <h2 style="font-size:1.75rem; color:var(--cw-title);">Asset Purchase & 24-Hour Cooling-Off Rule</h2>
+              <p style="color:var(--cw-body); margin-top:4px;">
+                SEC and CBN regulatory safeguards mandate a 24-hour mandatory holding lock on newly purchased investment units.
+              </p>
+            </div>
+            <a href="simulation.html" class="btn-primary">Test in Live Sandbox ↗</a>
+          </div>
+
+          <!-- Sequence Steps -->
+          <div class="flow-sequence-grid">
+            <div class="sequence-step">
+              <div class="step-num-badge">1</div>
+              <div class="step-title">Select Mutual Fund</div>
+              <p class="step-desc">Partner queries approved SEC investment products (Money Market, Fixed Income, Eurobonds).</p>
+              <span class="step-endpoint">GET /api/v1/assets</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">2</div>
+              <div class="step-title">Execute Unit Purchase</div>
+              <p class="step-desc">Units are purchased at today's Net Asset Value (NAV). Wallet balance deducted.</p>
+              <span class="step-endpoint">POST /api/v1/investments</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">3</div>
+              <div class="step-title">24h Cooling-Off Active</div>
+              <p class="step-desc">Withdrawal is locked for 24 hours to prevent anti-money laundering and ACH bounce fraud.</p>
+              <span class="step-endpoint">Lock: CW_ERR_WITHDRAWAL_LOCKED</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">4</div>
+              <div class="step-title">Daily Accrual & Liquidity</div>
+              <p class="step-desc">After 24 hours, interest accrues daily and units become fully redeemable into the wallet.</p>
+              <span class="step-endpoint">Settlement: T+1 Trading Day</span>
+            </div>
+          </div>
+
+          <!-- Technical Notes -->
+          <div class="flow-info-grid">
+            <div class="flow-callout">
+              <div class="flow-callout-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span>Handling CW_ERR_WITHDRAWAL_LOCKED</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--cw-body); margin-bottom:10px;">
+                If a partner initiates a liquidation before 24 hours elapsed, the API returns HTTP 422 with <code>CW_ERR_WITHDRAWAL_LOCKED</code>. UI clients should display a friendly countdown timer to inform users.
+              </p>
+            </div>
+
+            <div style="background:var(--code-bg); border-radius:var(--radius-md); padding:16px; border:1px solid var(--code-border);">
+              <div style="font-size:0.75rem; color:#64748B; font-family:var(--font-code); margin-bottom:8px;">// Asset Allocation</div>
+              <pre style="color:#A7F3D0; font-family:var(--font-code); font-size:0.8rem; overflow-x:auto;"><code>const investment = await client.investments.create({
+  asset_code: "ast_mmf_001",
+  amount: "50000.00",
+  wallet_id: "wlt_01jk98m3p",
+  idempotency_key: "tx_inv_987123"
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow 4: Webhooks -->
+      <div class="flow-card-container" id="flow-content-webhooks" style="display:none;">
+        <div class="flow-card">
+          <div class="flow-card-head">
+            <div>
+              <span class="brand-badge" style="margin-bottom:8px; display:inline-block;">Security Architecture</span>
+              <h2 style="font-size:1.75rem; color:var(--cw-title);">HMAC-SHA256 Webhook Verification & Idempotency</h2>
+              <p style="color:var(--cw-body); margin-top:4px;">
+                Every webhook dispatched by Cowrywise Embed carries an HMAC signature header computed from your secret key and the raw payload.
+              </p>
+            </div>
+            <a href="simulation.html" class="btn-primary">Test in Live Sandbox ↗</a>
+          </div>
+
+          <!-- Sequence Steps -->
+          <div class="flow-sequence-grid">
+            <div class="sequence-step">
+              <div class="step-num-badge">1</div>
+              <div class="step-title">Inbound Webhook</div>
+              <p class="step-desc">Cowrywise sends POST request with header <code>X-Cowrywise-Signature</code>.</p>
+              <span class="step-endpoint">Header: X-Cowrywise-Signature</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">2</div>
+              <div class="step-title">Compute Expected HMAC</div>
+              <p class="step-desc">Partner server calculates HMAC-SHA256(raw_body, client_secret).</p>
+              <span class="step-endpoint">crypto.createHmac("sha256")</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">3</div>
+              <div class="step-title">Constant-Time Compare</div>
+              <p class="step-desc">Compare hashes using <code>crypto.timingSafeEqual</code> to prevent timing attacks.</p>
+              <span class="step-endpoint">timingSafeEqual(computed, header)</span>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-num-badge">4</div>
+              <div class="step-title">Acknowledge HTTP 200</div>
+              <p class="step-desc">Return 200 within 4,000ms. Process long-running jobs asynchronously in background.</p>
+              <span class="step-endpoint">HTTP 200 OK (Quick ACK)</span>
+            </div>
+          </div>
+
+          <!-- Technical Notes -->
+          <div class="flow-info-grid">
+            <div class="flow-callout">
+              <div class="flow-callout-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Raw Body Parsing Gotcha</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--cw-body); margin-bottom:10px;">
+                In Express or NestJS, ensure your webhook endpoint uses raw body parsing (e.g. <code>express.raw({type: 'application/json'})</code>). Pre-parsed JSON objects will alter key order or whitespace and cause signature verification to fail!
+              </p>
+            </div>
+
+            <div style="background:var(--code-bg); border-radius:var(--radius-md); padding:16px; border:1px solid var(--code-border);">
+              <div style="font-size:0.75rem; color:#64748B; font-family:var(--font-code); margin-bottom:8px;">// HMAC Verification Helper</div>
+              <pre style="color:#A7F3D0; font-family:var(--font-code); font-size:0.8rem; overflow-x:auto;"><code>import crypto from "crypto";
+
+export function verifyWebhook(rawPayload, headerSignature, secret) {
+  const hash = crypto
+    .createHmac("sha256", secret)
+    .update(rawPayload)
+    .digest("hex");
+    
+  return crypto.timingSafeEqual(
+    Buffer.from(hash),
+    Buffer.from(headerSignature)
+  );
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:12px;">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise" style="width:28px; height:28px; border-radius:50%;" />
+        <strong style="color:var(--cw-title); font-size:1.1rem;">Cowrywise Embed Developer Experience Lab</strong>
+      </div>
+      <p style="margin-bottom:8px;">
+        Independent case study and interactive starter pack prepared by Adeola Lasisi.
+      </p>
+      <p>
+        <a href="https://developers.cowrywise.com" target="_blank">Official Cowrywise Docs</a> •
+        <a href="https://github.com/cowrywise/embed-node" target="_blank">Official Node SDK</a> •
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank">GitHub Repository</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Tab switching for Flows page
+    document.querySelectorAll('.flow-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.flow-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const flowId = btn.getAttribute('data-flow');
+        document.querySelectorAll('.flow-card-container').forEach(c => c.style.display = 'none');
+        const target = document.getElementById(`flow-content-${flowId}`);
+        if (target) target.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

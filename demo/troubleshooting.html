@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Troubleshooting & Error Catalog — Cowrywise Embed</title>
+  <meta name="description" content="Comprehensive troubleshooting matrix, error catalog, root causes, and fixes for Cowrywise Embed API integrations.">
+  
+  <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js"></script>
+</head>
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo-brand">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+        <span class="logo-wordmark">cowrywise</span>
+        <span class="brand-badge">Embed DX Lab</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="simulation.html">Live Sandbox</a>
+        <a href="templates.html">3D Templates</a>
+        <a href="flows.html">Architecture Flows</a>
+        <a href="troubleshooting.html" class="active">Troubleshooting</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="simulation.html" class="btn-primary">Launch Sandbox ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sub-page Banner -->
+  <section class="page-hero-banner">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Overview</a>
+        <span>/</span>
+        <span style="color:var(--cw-blue); font-weight:600;">Troubleshooting</span>
+      </div>
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:10px;">
+        Troubleshooting Matrix & Error Catalog
+      </h1>
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:720px;">
+        Diagnose and resolve integration blockers quickly. Every error documented below includes its HTTP status code, root cause, code remediations, and a live sandbox simulator trigger.
+      </p>
+    </div>
+  </section>
+
+  <!-- Troubleshooting Content -->
+  <main class="section">
+    <div class="container">
+      
+      <!-- Search & Category Filters -->
+      <div class="search-filter-bar">
+        <div class="search-input-wrap">
+          <span class="search-icon-pos">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" id="error-search" placeholder="Search error codes (e.g. CW_ERR_INVALID_BVN, webhook, locked)..." />
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <button class="btn-secondary filter-btn active" data-category="all" style="padding:10px 18px;">All</button>
+          <button class="btn-secondary filter-btn" data-category="kyc" style="padding:10px 18px;">KYC & BVN</button>
+          <button class="btn-secondary filter-btn" data-category="investment" style="padding:10px 18px;">Investments</button>
+          <button class="btn-secondary filter-btn" data-category="security" style="padding:10px 18px;">Webhooks & Security</button>
+        </div>
+      </div>
+
+      <!-- Errors Grid -->
+      <div class="troubleshooting-grid" id="errors-container">
+
+        <!-- Error 1 -->
+        <div class="error-card" data-category="kyc" data-code="CW_ERR_INVALID_BVN">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="error-badge">CW_ERR_INVALID_BVN</span>
+            <span class="status-badge status-400">HTTP 400</span>
+          </div>
+          <h3 class="error-title">Bank Verification Number Failed Validation</h3>
+          <p class="error-cause">
+            The submitted BVN does not exist, contains non-numeric characters, or fails Luhn-11 checksum validation against the national NIBSS switch.
+          </p>
+          <div class="error-fix">
+            <strong>Remediation:</strong> Validate that the BVN is exactly 11 digits using regex <code>^\d{11}$</code> before dispatching API requests. In the sandbox, only use the certified test BVN <code>22222222281</code>.
+          </div>
+          <div class="error-action-row">
+            <button class="btn-secondary test-error-btn" data-tab="onboarding" data-code="CW_ERR_INVALID_BVN" style="font-size:0.8rem; padding:6px 14px;">
+              Simulate Error in Sandbox ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Error 2 -->
+        <div class="error-card" data-category="investment" data-code="CW_ERR_WITHDRAWAL_LOCKED">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="error-badge">CW_ERR_WITHDRAWAL_LOCKED</span>
+            <span class="status-badge status-422">HTTP 422</span>
+          </div>
+          <h3 class="error-title">24-Hour Cooling-Off Rule Active</h3>
+          <p class="error-cause">
+            A redemption or withdrawal was attempted within 24 hours of purchasing mutual fund or treasury units. SEC regulations mandate this holding window to prevent chargeback and ACH float abuse.
+          </p>
+          <div class="error-fix">
+            <strong>Remediation:</strong> Check <code>investment.cooling_off_expires_at</code> before rendering the "Sell Units" button. Show a friendly countdown timer in your frontend UI until the window elapses.
+          </div>
+          <div class="error-action-row">
+            <button class="btn-secondary test-error-btn" data-tab="investing" data-code="CW_ERR_WITHDRAWAL_LOCKED" style="font-size:0.8rem; padding:6px 14px;">
+              Simulate Error in Sandbox ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Error 3 -->
+        <div class="error-card" data-category="security" data-code="CW_ERR_INVALID_WEBHOOK_SIGNATURE">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="error-badge">CW_ERR_INVALID_WEBHOOK_SIGNATURE</span>
+            <span class="status-badge status-401">HTTP 401</span>
+          </div>
+          <h3 class="error-title">Webhook HMAC-SHA256 Mismatch</h3>
+          <p class="error-cause">
+            The inbound signature header does not match the computed hash of the raw request payload. This is almost always caused by body-parser middleware reordering JSON keys or stripping trailing whitespace.
+          </p>
+          <div class="error-fix">
+            <strong>Remediation:</strong> Compute HMAC over the raw UTF-8 request buffer before JSON parsing occurs. Verify using <code>crypto.timingSafeEqual()</code>.
+          </div>
+          <div class="error-action-row">
+            <button class="btn-secondary test-error-btn" data-tab="webhooks" data-code="CW_ERR_INVALID_WEBHOOK_SIGNATURE" style="font-size:0.8rem; padding:6px 14px;">
+              Simulate Error in Sandbox ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Error 4 -->
+        <div class="error-card" data-category="investment" data-code="CW_ERR_INSUFFICIENT_FUNDS">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="error-badge">CW_ERR_INSUFFICIENT_FUNDS</span>
+            <span class="status-badge status-400">HTTP 400</span>
+          </div>
+          <h3 class="error-title">Wallet Balance Lower than Order Total</h3>
+          <p class="error-cause">
+            The wallet does not have enough unencumbered funds to cover the subscription amount plus fund manager stamp duty (0.15%).
+          </p>
+          <div class="error-fix">
+            <strong>Remediation:</strong> Query <code>GET /api/v1/wallets/:id</code> to inspect <code>available_balance</code> before submitting order execution. Direct user to fund wallet via virtual account transfer.
+          </div>
+          <div class="error-action-row">
+            <button class="btn-secondary test-error-btn" data-tab="investing" data-code="CW_ERR_INSUFFICIENT_FUNDS" style="font-size:0.8rem; padding:6px 14px;">
+              Simulate Error in Sandbox ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Error 5 -->
+        <div class="error-card" data-category="kyc" data-code="CW_ERR_KYC_NAME_MISMATCH">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="error-badge">CW_ERR_KYC_NAME_MISMATCH</span>
+            <span class="status-badge status-422">HTTP 422</span>
+          </div>
+          <h3 class="error-title">Customer Name Does Not Match BVN Record</h3>
+          <p class="error-cause">
+            The first and last name provided during account creation differs significantly from the full legal name registered under the BVN at NIBSS.
+          </p>
+          <div class="error-fix">
+            <strong>Remediation:</strong> Ask the user to confirm their name as spelled on their official bank app or national NIN card, or initiate a Tier-2 document verification workflow with government ID upload.
+          </div>
+          <div class="error-action-row">
+            <button class="btn-secondary test-error-btn" data-tab="onboarding" data-code="CW_ERR_KYC_NAME_MISMATCH" style="font-size:0.8rem; padding:6px 14px;">
+              Simulate Error in Sandbox ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Error 6 -->
+        <div class="error-card" data-category="security" data-code="CW_ERR_RATE_LIMIT_EXCEEDED">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="error-badge">CW_ERR_RATE_LIMIT_EXCEEDED</span>
+            <span class="status-badge status-429" style="background:#FEF3C7; color:#B45309; border:1px solid #FDE68A;">HTTP 429</span>
+          </div>
+          <h3 class="error-title">API Burst Rate Limit Exceeded</h3>
+          <p class="error-cause">
+            Your integration exceeded the limit of 120 requests/minute in the sandbox environment, or sent multiple concurrent duplicate calls without an idempotency key.
+          </p>
+          <div class="error-fix">
+            <strong>Remediation:</strong> Implement an exponential backoff retry mechanism (using HTTP headers <code>Retry-After</code>) and always attach unique <code>Idempotency-Key</code> headers to mutating POST requests.
+          </div>
+          <div class="error-action-row">
+            <button class="btn-secondary test-error-btn" data-tab="webhooks" data-code="CW_ERR_RATE_LIMIT_EXCEEDED" style="font-size:0.8rem; padding:6px 14px;">
+              Simulate Error in Sandbox ↗
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:12px;">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise" style="width:28px; height:28px; border-radius:50%;" />
+        <strong style="color:var(--cw-title); font-size:1.1rem;">Cowrywise Embed Developer Experience Lab</strong>
+      </div>
+      <p style="margin-bottom:8px;">
+        Independent case study and interactive starter pack prepared by Adeola Lasisi.
+      </p>
+      <p>
+        <a href="https://developers.cowrywise.com" target="_blank">Official Cowrywise Docs</a> •
+        <a href="https://github.com/cowrywise/embed-node" target="_blank">Official Node SDK</a> •
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank">GitHub Repository</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Search & Category Filtering
+    const searchInput = document.getElementById('error-search');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.error-card');
+
+    function applyFilters() {
+      const query = (searchInput?.value || '').toLowerCase().trim();
+      const activeCategory = document.querySelector('.filter-btn.active')?.getAttribute('data-category') || 'all';
+
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const code = card.getAttribute('data-code')?.toLowerCase() || '';
+        const text = card.textContent.toLowerCase();
+
+        const matchesCat = activeCategory === 'all' || category === activeCategory;
+        const matchesQuery = !query || code.includes(query) || text.includes(query);
+
+        if (matchesCat && matchesQuery) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    searchInput?.addEventListener('input', applyFilters);
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    // Test Error in Sandbox triggers
+    document.querySelectorAll('.test-error-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.getAttribute('data-tab');
+        const code = btn.getAttribute('data-code');
+
+        if (window.showToast) {
+          window.showToast({
+            type: 'error',
+            title: `Simulating ${code}`,
+            message: 'Loading live simulation environment with pre-configured fault injection...',
+            duration: 2500
+          });
+        }
+
+        setTimeout(() => {
+          window.location.href = `simulation.html?tab=${tab}&error=${code}`;
+        }, 600);
+      });
+    });
+  </script>
+</body>
+</html>
