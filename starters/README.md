@@ -12,6 +12,8 @@ This folder contains production-ready, cloneable application templates designed 
 | **[`/investment-portal`](./investment-portal)** | Mutual fund discovery catalog, risk profiling, 1-click purchases | React + Vite, TypeScript, Chart.js | `/assets`, `/assets/invest`, `/portfolio` |
 | **[`/roundup-app`](./roundup-app)** | Spare change round-up savings for e-commerce checkout and card spend | Web Components, Express, Node.js | `/wallets/transfer`, `/assets/invest`, `/webhooks` |
 | **[`/payroll-treasury`](./payroll-treasury)** | Automated salary splits into locked vaults and eurobonds on payday | Next.js 14, PostgreSQL, Redis, BullMQ | `/accounts`, `/wallets/virtual-accounts`, `/savings` |
+| **[`/wealthpass`](./wealthpass)** | Neobank customer onboarding, BVN/NIN verification, virtual accounts | Next.js 14, Tailwind CSS, TypeScript | `/accounts/create`, `/accounts/verify-bvn`, `/wallets` |
+| **[`/eurovest`](./eurovest)** | Sovereign USD Eurobonds and fixed-income dollar treasury portal | React, TypeScript, Chart.js | `/assets`, `/assets/invest`, `/portfolio` |
 
 ---
 

@@ -1,3 +1,4 @@
+/// <reference path="./embed-node.d.ts" />
 import Client from "@cowrywise/embed-node";
 
 export function createCowrywiseClient() {

@@ -1602,9 +1602,144 @@ document.addEventListener("DOMContentLoaded", () => {
           logConsole("HTTP", "POST /api/v1/savings/create 201 Created -> Emergency Payroll Split.");
           closeModal();
         });
+      } else if (appKey === "wealthpass") {
+        openModal({
+          title: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> WealthPass — Neobank KYC & Account Opening Simulator`,
+          contentHtml: `
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px;">
+                <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700;">DIGITAL ONBOARDING SIMULATION</div>
+                <div style="font-size:1.15rem; font-weight:800; color:var(--cw-title); margin-top:2px;">Instant Customer Provisioning</div>
+                <div style="font-size:0.85rem; color:var(--cw-body);">Verify BVN/NIN and provision digital wallet with dedicated NGN/USD virtual account numbers.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Customer Legal Name</label>
+                <input type="text" id="demo-wpass-name" class="form-input" value="Chiamaka Nwosu" />
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" id="demo-wpass-email" class="form-input" value="chiamaka.nwosu@example.ng" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">11-Digit BVN</label>
+                  <input type="text" id="demo-wpass-bvn" class="form-input" value="22345678901" maxlength="11" />
+                </div>
+              </div>
+
+              <div style="background:var(--cw-emerald-subtle); border:1px solid rgba(0,196,140,0.3); border-radius:8px; padding:12px; font-size:0.85rem; color:#03684B;">
+                ✓ Automatic NIBSS biometric validation<br>
+                ✓ Virtual Dedicated Account Number (Wema / Providus Bank) generated instantly.
+              </div>
+
+              <button class="btn-primary" id="btn-demo-wpass-submit" style="width:100%; justify-content:center; padding:12px;" type="button">
+                Complete Verification & Issue Virtual Account
+              </button>
+            </div>
+          `,
+          confirmText: "Close Simulator"
+        });
+
+        document.getElementById("btn-demo-wpass-submit")?.addEventListener("click", () => {
+          showToast({
+            type: "success",
+            title: "Identity Verified & Wallet Activated!",
+            message: "Customer provisioned. Wema Virtual NGN Account: 7820194821. Ready to accept customer deposits.",
+            duration: 5000
+          });
+          logConsole("HTTP", "POST /api/v1/accounts/create 201 Created -> acc_wpass_001 (Tier-2 Verified)");
+          logConsole("HTTP", "POST /api/v1/wallets/virtual-accounts 201 Created -> Wema Bank 7820194821");
+          closeModal();
+        });
+
+      } else if (appKey === "eurovest") {
+        openModal({
+          title: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> EuroVest — Sovereign USD Eurobonds Simulator`,
+          contentHtml: `
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#07152C; border-radius:10px; padding:16px; color:white;">
+                <div style="font-size:0.75rem; color:#94A3B8; font-weight:700;">USD SOVEREIGN TREASURY</div>
+                <div style="font-size:1.3rem; font-weight:800; color:#FCD34D; margin-top:2px;">FGN Eurobond 2032 (8.75%)</div>
+                <div style="font-size:0.82rem; color:#CBD5E1;">Semi-Annual Coupon • Sovereign Guaranteed Credit Rating</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Investment Amount (USD $)</label>
+                <input type="number" id="demo-euro-amount" class="form-input" value="1000" min="100" />
+              </div>
+
+              <div style="background:var(--cw-blue-subtle); border:1px solid rgba(0,102,245,0.2); border-radius:8px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div style="font-size:0.76rem; color:var(--cw-muted); font-weight:600;">Annual USD Coupon Return</div>
+                  <div style="font-size:1.15rem; font-weight:800; color:var(--cw-blue);" id="demo-euro-coupon">+$87.50 / year</div>
+                </div>
+                <span style="font-size:0.75rem; color:#03684B; font-weight:700; background:var(--cw-emerald-subtle); padding:4px 8px; border-radius:4px;">+8.75% USD APY</span>
+              </div>
+
+              <button class="btn-primary" id="btn-demo-euro-submit" style="width:100%; justify-content:center; padding:12px;" type="button">
+                Execute Eurobond Purchase (Via SDK)
+              </button>
+            </div>
+          `,
+          confirmText: "Close Simulator"
+        });
+
+        const amountInput = document.getElementById("demo-euro-amount");
+        const couponVal = document.getElementById("demo-euro-coupon");
+        amountInput?.addEventListener("input", () => {
+          const val = Number(amountInput.value) || 0;
+          if (couponVal) couponVal.textContent = `+$${(val * 0.0875).toFixed(2)} / year`;
+        });
+
+        document.getElementById("btn-demo-euro-submit")?.addEventListener("click", () => {
+          const amt = Number(amountInput.value) || 1000;
+          showToast({
+            type: "success",
+            title: "Eurobond Order Settled!",
+            message: `Purchased $${amt.toLocaleString()} FGN Eurobond 2032 units. Semi-annual coupons credited in USD.`,
+            duration: 5000
+          });
+          logConsole("HTTP", `POST /api/v1/assets/invest 200 OK -> Purchased $${amt.toLocaleString()} units of FGN Eurobond 2032`);
+          closeModal();
+        });
       }
     });
   });
+
+  // HorizonX Category Filter Pills
+  document.querySelectorAll(".horizon-filter-pill").forEach((pill) => {
+    pill.addEventListener("click", () => {
+      document.querySelectorAll(".horizon-filter-pill").forEach((p) => p.classList.remove("active"));
+      pill.classList.add("active");
+      const filter = pill.getAttribute("data-filter");
+
+      document.querySelectorAll(".horizon-card").forEach((card) => {
+        const cat = card.getAttribute("data-category");
+        if (filter === "all" || cat === filter) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+
+  // Mobile Menu Toggle
+  const mobileToggle = document.getElementById("mobile-menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav-panel");
+  if (mobileToggle && mobileNav) {
+    mobileToggle.addEventListener("click", () => {
+      mobileNav.classList.toggle("open");
+    });
+    // Close mobile nav when clicking any link inside
+    mobileNav.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+      });
+    });
+  }
 
   // URL query parameter support for direct tab selection and fault injection
   const urlParams = new URLSearchParams(window.location.search);
