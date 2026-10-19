@@ -1713,92 +1713,42 @@ h1, h2, h3, h4 {
   background: #8B5CF6;
 }
 
-/* CSS Mockup UI Canvas inside the thumbnail */
-.thumb-canvas {
+/* Real 3D Visual Asset inside thumbnail */
+.horizon-thumb-img {
   width: 100%;
   height: 100%;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: transform 0.4s var(--ease);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.horizon-card:hover .thumb-canvas {
-  transform: scale(1.04);
+.horizon-card:hover .horizon-thumb-img {
+  transform: scale(1.07);
+  filter: contrast(1.04) brightness(1.03);
 }
 
-/* Theme variations for thumb canvas */
-.thumb-canvas.theme-savings {
-  background: radial-gradient(circle at 80% 20%, rgba(0, 196, 140, 0.25) 0%, #07152C 70%);
-}
-
-.thumb-canvas.theme-invest {
-  background: radial-gradient(circle at 80% 20%, rgba(0, 102, 245, 0.35) 0%, #07152C 70%);
-}
-
-.thumb-canvas.theme-roundup {
-  background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.25) 0%, #07152C 70%);
-}
-
-.thumb-canvas.theme-payroll {
-  background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.3) 0%, #07152C 70%);
-}
-
-.thumb-canvas.theme-neobank {
-  background: radial-gradient(circle at 20% 80%, rgba(0, 102, 245, 0.25) 0%, #0B192C 70%);
-}
-
-.thumb-canvas.theme-eurobond {
-  background: radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.25) 0%, #07152C 70%);
-}
-
-/* Mini Mockup Window inside thumbnail */
-.mini-ui-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 12px;
-  padding: 14px 16px;
-  color: white;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-.mini-ui-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.72rem;
-  color: #94A3B8;
-  margin-bottom: 8px;
-}
-
-.mini-ui-val {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 8px;
-}
-
-.mini-ui-bar {
+/* Specular Shimmer Sheen on Card Hover */
+.horizon-thumb::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -140%;
   width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-
-.mini-ui-fill {
   height: 100%;
-  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
 }
 
-.mini-ui-footer {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.7rem;
-  color: #CBD5E1;
+.horizon-card:hover .horizon-thumb::after {
+  left: 140%;
 }
 
 /* Hover Overlay Buttons */
