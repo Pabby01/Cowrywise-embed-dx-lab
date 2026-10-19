@@ -2,96 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cowrywise Embed Developer Starter Pack & 3D Fintech Sandbox</title>
-  <meta name="description" content="The ultimate developer starter pack, 3D templates, and interactive sandbox for integrating Cowrywise Embed API.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cowrywise Embed — Integrate Investment Features Into Your Services</title>
+  <meta name="description" content="The official developer starter pack, 3D WebGL isometric models, and interactive sandbox for integrating the Cowrywise Embed API.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230066F5'/%3E%3Cpath d='M16 8C11.58 8 8 11.58 8 16C8 20.42 11.58 24 16 24C20.42 24 24 20.42 24 16' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='%2300C48C'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
+  <script src="three.min.js"></script>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Header Navigation -->
   <header class="header">
     <div class="container nav-wrap">
       <a href="#" class="logo-brand">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="16" cy="16" r="16" fill="#0066F5"/>
-          <path d="M16 8C11.58 8 8 11.58 8 16C8 20.42 11.58 24 16 24C20.42 24 24 20.42 24 16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="16" cy="16" r="3.5" fill="#00C48C"/>
+        <!-- Cowrywise Official Spiral Logo SVG -->
+        <svg width="156" height="34" viewBox="0 0 156 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(0, 1)">
+            <circle cx="16" cy="16" r="16" fill="#0066F5"/>
+            <path d="M16 6C10.477 6 6 10.477 6 16C6 21.523 10.477 26 16 26C21.523 26 26 21.523 26 16C26 13.5 24.8 11.2 23 9.7" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M16 10.5C13 10.5 10.5 13 10.5 16C10.5 19 13 21.5 16 21.5C19 21.5 21.5 19 21.5 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="2.8" fill="#00C48C"/>
+          </g>
+          <text x="42" y="23" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="20" fill="#07152C" letter-spacing="-0.035em">cowrywise</text>
         </svg>
-        <span>Cowrywise Embed</span>
-        <span class="logo-badge">DX Starter Lab</span>
+        <span class="brand-badge">Embed DX Lab</span>
       </a>
 
       <nav class="nav-links">
+        <a href="#overview">Overview</a>
         <a href="#sandbox">Interactive Sandbox</a>
         <a href="#templates">3D Templates</a>
         <a href="#troubleshooting">Troubleshooting</a>
-        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub Repo</a>
-        <a href="#sandbox" class="btn-primary">Try Sandbox</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="#sandbox" class="btn-primary">Request access ↗</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section with 3D Card Scene -->
-  <section class="hero">
+  <!-- Hero Section with Official Cowrywise Pale Mint Background & 3D Isometric WebGL Scene -->
+  <section id="overview" class="hero">
     <div class="container hero-grid">
-      <div class="hero-text-col">
-        <div class="hero-tagline">
-          <span>⚡ Investment-as-a-Service Starter Kit</span>
+      <!-- Left Content Column -->
+      <div class="hero-left">
+        <div class="hero-badge-pill">
+          <span>EMBED API</span>
         </div>
         <h1 class="hero-title">
-          Build Wealth Features with <span class="text-gradient">Cowrywise Embed</span>
+          Integrate investment features into your <span class="blue-highlight">services</span>
         </h1>
         <p class="hero-desc">
-          The ultimate developer starter pack and interactive sandbox. Seamlessly embed Mutual Funds, Treasury Bills, Locked Savings, and automated wealth management into your fintech application.
+          Embed investment features into your services and connect your customers to high-quality investment products that enable them to grow and manage their money.
         </p>
         <div class="hero-actions">
-          <a href="#sandbox" class="btn-primary">Launch Interactive Sandbox</a>
-          <a href="#templates" class="btn-secondary">Explore 3D Templates</a>
+          <a href="#sandbox" class="btn-primary">Request early access ↗</a>
+          <a href="#sandbox" class="btn-secondary">Launch Sandbox Demo</a>
         </div>
       </div>
 
-      <!-- 3D Parallax Tilt Scene -->
-      <div class="fintech-3d-scene">
-        <div class="card-3d-wrapper">
-          <div class="card-3d-mesh">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-              <div class="card-chip"></div>
-              <span style="font-size:0.75rem; color:var(--text-dim); font-weight:700; letter-spacing:0.05em;">EMBED API WALLET</span>
-            </div>
-            
-            <div class="card-balance-label">Available Balance</div>
-            <div id="hero-card-balance" class="card-balance-val">₦125,000</div>
+      <!-- Right Column: Interactive Three.js 3D Scene -->
+      <div class="scene-container" id="canvas-container">
+        <canvas id="cowrywise-canvas"></canvas>
 
-            <div class="card-stats-row">
-              <div class="card-stat-item">
-                <small>Invested Value</small>
-                <span id="hero-card-invested" style="color:white; font-family:var(--font-code);">₦350,000</span>
-              </div>
-              <div class="card-stat-item">
-                <small>Est. Return</small>
-                <span>+16.5% p.a.</span>
-              </div>
-              <div class="card-stat-item">
-                <small>KYC Status</small>
-                <span id="hero-card-status" style="color:#60a5fa;">Verified (Tier 1)</span>
-              </div>
-            </div>
+        <!-- Floating 3D Stat Badges Overlay -->
+        <div class="floating-badge badge-top-left">
+          <div class="badge-icon-wrap blue">₦</div>
+          <div class="badge-content">
+            <small>Wallet Balance</small>
+            <strong id="hero-stat-balance">₦125,000</strong>
           </div>
         </div>
 
-        <!-- Floating 3D Badges -->
-        <div class="floating-pill pill-top-right">
-          <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--cw-emerald);"></span>
-          <span style="font-size:0.8rem; font-weight:600;">Mutual Funds API Connected</span>
+        <div class="floating-badge badge-mid-right">
+          <div class="badge-icon-wrap green">📈</div>
+          <div class="badge-content">
+            <small>Est. Return</small>
+            <strong>+16.5% p.a.</strong>
+          </div>
         </div>
 
-        <div class="floating-pill pill-bottom-left">
-          <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--cw-blue);"></span>
-          <span style="font-size:0.8rem; font-weight:600;">HMAC SHA-256 Webhooks</span>
+        <div class="floating-badge badge-bottom-right">
+          <div class="badge-icon-wrap gold">🔒</div>
+          <div class="badge-content">
+            <small>KYC Status</small>
+            <strong id="hero-stat-kyc" style="color:var(--cw-blue);">Verified (Tier 1)</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -101,14 +103,15 @@
   <section id="sandbox" class="section">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Interactive Integration Sandbox</h2>
+        <span class="section-eyebrow">Interactive Developer Environment</span>
+        <h2 class="section-title">Test the Full Integration Journey</h2>
         <p class="section-desc">
-          Test real API lifecycles in-browser with live Node.js SDK code generation and immediate visual feedback.
+          Run realistic Cowrywise Embed API lifecycles in-browser with live multi-language code generation and instant validation.
         </p>
       </div>
 
       <div class="sandbox-workspace">
-        <!-- Tab Navigation -->
+        <!-- Navigation Tabs -->
         <div class="sandbox-nav">
           <button class="sandbox-tab active" data-tab="onboarding">
             <span>1. Customer KYC & BVN</span>
@@ -124,10 +127,10 @@
           </button>
         </div>
 
-        <!-- Sandbox Body: Left Interactive, Right Code -->
+        <!-- Sandbox Body -->
         <div class="sandbox-body">
           <div class="sandbox-interactive-panel" id="sandbox-interactive-content">
-            <!-- Populated via JavaScript -->
+            <!-- Populated dynamically via app.js -->
           </div>
 
           <div class="sandbox-code-panel">
@@ -137,22 +140,23 @@
                 <button class="lang-btn" data-lang="python">Python</button>
                 <button class="lang-btn" data-lang="curl">cURL</button>
               </div>
-              <button id="copy-code-btn" class="btn-secondary" style="padding:6px 12px; font-size:0.8rem;">Copy Snippet</button>
+              <button id="copy-code-btn" class="btn-secondary" style="padding:6px 14px; font-size:0.8rem; background:rgba(255,255,255,0.08); color:white; border-color:rgba(255,255,255,0.15);">Copy Snippet</button>
             </div>
-            <pre class="code-output"><code id="code-display">// Initializing code...</code></pre>
+            <pre class="code-output"><code id="code-display">// Initializing code snippet...</code></pre>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3D Templates Catalog -->
-  <section id="templates" class="section">
+  <!-- 3D Fintech UI Component Templates -->
+  <section id="templates" class="section alt-bg">
     <div class="container">
       <div class="section-head">
+        <span class="section-eyebrow">Pre-Built Frontend Patterns</span>
         <h2 class="section-title">Fintech UI Component Templates</h2>
         <p class="section-desc">
-          Pre-built, customizable UI patterns designed for consumer banking, payroll apps, and e-commerce reward systems.
+          Ready-to-use, customizable UI patterns designed for consumer banking apps, payroll systems, and retail reward platforms.
         </p>
       </div>
 
@@ -162,20 +166,20 @@
           <div class="template-icon">📈</div>
           <h3 class="template-title">"Invest with Cowrywise" Modal</h3>
           <p class="template-desc">
-            A clean modal drawer allowing users to select risk profiles, compare fund managers, and allocate capital with one click.
+            A drop-in investment drawer allowing users to compare mutual fund managers, select risk tolerances, and purchase units with one click.
           </p>
           <div class="template-preview-box">
-            <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:8px;">EMBEDDED PREVIEW</div>
-            <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:6px; margin-bottom:10px;">
-              <div style="font-size:0.85rem; font-weight:700;">Money Market Fund</div>
-              <div style="font-size:0.75rem; color:var(--cw-emerald);">+16.5% Annualized Return</div>
+            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">EMBEDDED PREVIEW</div>
+            <div style="background:white; border:1px solid #E2E8F0; padding:12px; border-radius:8px; margin-bottom:12px;">
+              <div style="font-size:0.9rem; font-weight:700; color:var(--cw-title);">Money Market Fund</div>
+              <div style="font-size:0.8rem; color:var(--cw-emerald); font-weight:600;">+16.5% Annualized Yield</div>
             </div>
             <button class="widget-preview-btn">
               <span>Invest ₦25,000</span>
               <span>→</span>
             </button>
           </div>
-          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-1-neobank--consumer-fintech-superapp" class="btn-secondary" style="text-align:center; display:block;">View Architecture Guide</a>
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-1-neobank--consumer-fintech-superapp" target="_blank" class="btn-secondary" style="text-align:center; display:block;">View Architecture Blueprint</a>
         </div>
 
         <!-- Template 2 -->
@@ -183,17 +187,17 @@
           <div class="template-icon">🪙</div>
           <h3 class="template-title">Spare Change "Round-Up" Card</h3>
           <p class="template-desc">
-            Embed micro-investing into shopping checkout flows or debit card spend histories. Automatically rounds up transactions.
+            Embed automated micro-investing into shopping checkout flows or debit card spend histories. Rounds transactions to the nearest ₦100.
           </p>
           <div class="template-preview-box">
-            <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:8px;">EMBEDDED PREVIEW</div>
-            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:10px; border-radius:6px; margin-bottom:10px;">
-              <span style="font-size:0.8rem;">Auto-Save Spare Change</span>
-              <span style="font-size:0.8rem; font-weight:700; color:var(--cw-emerald);">ACTIVE</span>
+            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">EMBEDDED PREVIEW</div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:white; border:1px solid #E2E8F0; padding:12px; border-radius:8px; margin-bottom:12px;">
+              <span style="font-size:0.85rem; font-weight:600; color:var(--cw-title);">Auto-Save Spare Change</span>
+              <span style="font-size:0.75rem; font-weight:700; color:#03684B; background:var(--cw-emerald-subtle); padding:2px 8px; border-radius:4px;">ACTIVE</span>
             </div>
-            <div style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-code);">Accumulated: ₦14,800</div>
+            <div style="font-size:0.85rem; color:var(--cw-body); font-family:var(--font-code);">Accumulated: ₦14,800</div>
           </div>
-          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-3-e-commerce--retail-loyalty-rewards-program" class="btn-secondary" style="text-align:center; display:block;">View Architecture Guide</a>
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-3-e-commerce--retail-loyalty-rewards-program" target="_blank" class="btn-secondary" style="text-align:center; display:block;">View Architecture Blueprint</a>
         </div>
 
         <!-- Template 3 -->
@@ -201,29 +205,30 @@
           <div class="template-icon">🔒</div>
           <h3 class="template-title">Disciplined Locked Savings Card</h3>
           <p class="template-desc">
-            Visual milestone tracker with countdown locks to protect user funds and reinforce long-term wealth habits.
+            Visual milestone tracker with countdown locks to protect user funds and reinforce long-term wealth habits (minimum 3 months).
           </p>
           <div class="template-preview-box">
-            <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:8px;">EMBEDDED PREVIEW</div>
-            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;">
-              <span>Emergency Fund</span>
+            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">EMBEDDED PREVIEW</div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600; margin-bottom:6px;">
+              <span style="color:var(--cw-title);">Emergency Fund</span>
               <span style="color:var(--cw-blue); font-weight:700;">6 Months Lock</span>
             </div>
-            <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:99px; overflow:hidden; margin-bottom:10px;">
+            <div style="width:100%; height:8px; background:#E2E8F0; border-radius:99px; overflow:hidden; margin-bottom:10px;">
               <div style="width:65%; height:100%; background:linear-gradient(90deg, var(--cw-blue), var(--cw-emerald));"></div>
             </div>
-            <div style="font-size:0.75rem; color:var(--text-dim);">₦325,000 / ₦500,000 Target</div>
+            <div style="font-size:0.8rem; color:var(--cw-muted); font-weight:600;">₦325,000 / ₦500,000 Target</div>
           </div>
-          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-2-hr-tech--payroll--remuneration-platform" class="btn-secondary" style="text-align:center; display:block;">View Architecture Guide</a>
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-2-hr-tech--payroll--remuneration-platform" target="_blank" class="btn-secondary" style="text-align:center; display:block;">View Architecture Blueprint</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Troubleshooting Matrix -->
-  <section id="troubleshooting" class="section" style="background:rgba(8, 14, 28, 0.4);">
+  <section id="troubleshooting" class="section">
     <div class="container">
       <div class="section-head">
+        <span class="section-eyebrow">Developer Reliability</span>
         <h2 class="section-title">Developer Troubleshooting Matrix</h2>
         <p class="section-desc">
           Instant solutions for common integration roadblocks. Built by developers, for developers.
@@ -245,7 +250,7 @@
           <h4 class="error-title">Webhook Signature Mismatch</h4>
           <p class="error-cause">Comparing signature against raw body instead of <code>CLIENT_ID</code> signed with <code>CLIENT_SECRET</code>.</p>
           <div class="error-fix">
-            <strong>Fix:</strong> Hash <code>CLIENT_ID</code> with <code>CLIENT_SECRET</code> using HMAC SHA-256 and use <code>crypto.timingSafeEqual()</code>.
+            <strong>Fix:</strong> Hash <code>CLIENT_ID</code> with <code>CLIENT_SECRET</code> using HMAC SHA-256 and compare using <code>crypto.timingSafeEqual()</code>.
           </div>
         </div>
 
@@ -270,18 +275,28 @@
     </div>
   </section>
 
+  <!-- Floating Bottom Chapter Dock (inspired by ThreeUI Kage Landing Page) -->
+  <div class="dock-wrap">
+    <a href="#overview" class="dock-btn active">01 Overview</a>
+    <a href="#sandbox" class="dock-btn">02 Sandbox</a>
+    <a href="#templates" class="dock-btn">03 3D Templates</a>
+    <a href="#troubleshooting" class="dock-btn">04 Troubleshooting</a>
+    <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/quickstart.md" target="_blank" class="dock-btn">05 Quickstart ↗</a>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p style="margin-bottom:8px;">
-        <strong>Cowrywise Embed Developer Experience Lab & Starter Pack</strong> — Independent case study prepared by Adeola Lasisi.
+      <p style="margin-bottom:8px; font-weight:600; color:var(--cw-title);">
+        Cowrywise Embed Developer Experience Lab & Starter Pack
       </p>
       <p>
-        Not affiliated with Cowrywise HQ. All trademarks belong to Cowrywise Financial Technology Limited.
+        An independent developer relations case study prepared by Adeola Lasisi.
       </p>
-      <p style="margin-top:14px;">
-        <a href="https://developers.cowrywise.com" target="_blank">Official Docs</a> •
+      <p style="margin-top:16px;">
+        <a href="https://developers.cowrywise.com" target="_blank">Official Cowrywise Docs</a> •
         <a href="https://github.com/cowrywise/embed-node" target="_blank">Official Node SDK</a> •
+        <a href="https://github.com/cowrywise/embedpy" target="_blank">Official Python SDK</a> •
         <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank">GitHub Repository</a>
       </p>
     </div>
