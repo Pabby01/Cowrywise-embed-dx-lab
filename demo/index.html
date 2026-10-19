@@ -199,11 +199,10 @@
         <div class="sim-3d-visualizer-bar">
           <div class="sim-3d-status-info">
             <div class="sim-3d-tag">
-              <span class="live-dot"></span>
-              <span>EMBED MOCK ENGINE • TLS 1.3 SECURE</span>
             </div>
-            <h3 class="sim-3d-title">Interactive Smart Contract & Ledger Vault</h3>
-            <p class="sim-3d-subtitle">Drag to rotate the 3D vault in real time. Watch it react dynamically as you execute transactions.</p>
+            <h3 class="sim-3d-title">Interactive API Integration Simulation</h3>
+            <p class="sim-3d-subtitle">Drag to rotate the 3D vault in real time. Watch it react dynamically as you
+              execute transactions.</p>
           </div>
           <div class="sim-3d-canvas-wrap">
             <canvas id="sim-3d-canvas"></canvas>
@@ -213,19 +212,31 @@
         <!-- 3D Segmented Tabs -->
         <div class="sandbox-nav">
           <button class="sandbox-tab active" data-tab="onboarding">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
             <span>1. Customer KYC & BVN</span>
           </button>
           <button class="sandbox-tab" data-tab="investing">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
             <span>2. Wallets & Mutual Funds</span>
           </button>
           <button class="sandbox-tab" data-tab="savings">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
             <span>3. Locked Savings</span>
           </button>
           <button class="sandbox-tab" data-tab="webhooks">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
             <span>4. Webhooks & HMAC</span>
           </button>
         </div>
@@ -241,7 +252,14 @@
                 <span class="window-dot green"></span>
               </div>
               <div class="sim-card-title">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2">
+                  <line x1="4" y1="21" x2="4" y2="14" />
+                  <line x1="4" y1="10" x2="4" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="3" />
+                  <line x1="20" y1="21" x2="20" y2="16" />
+                  <line x1="20" y1="12" x2="20" y2="3" />
+                </svg>
                 <span>Editable Request Parameters</span>
               </div>
               <span class="badge-sandbox-hint" style="margin:0;">Sandbox Mock</span>
@@ -263,9 +281,11 @@
                 <span class="status-badge status-200" id="response-status-badge">200 OK</span>
                 <span class="latency-badge" id="response-latency">114ms</span>
               </div>
-              <span style="color:#64748B; font-size:0.75rem; font-family:var(--font-code);">HTTP/1.1 Live Response</span>
+              <span style="color:#64748B; font-size:0.75rem; font-family:var(--font-code);">HTTP/1.1 Live
+                Response</span>
             </div>
-            <pre class="response-json-view" style="flex:1;"><code id="response-json-display">{\n  "message": "Ready to test live requests."\n}</code></pre>
+            <pre class="response-json-view"
+              style="flex:1;"><code id="response-json-display">{\n  "message": "Ready to test live requests."\n}</code></pre>
 
             <div class="code-panel-header">
               <div class="lang-switch">
@@ -274,7 +294,10 @@
                 <button class="lang-btn" data-lang="curl">cURL</button>
               </div>
               <button id="copy-code-btn" class="btn-copy-snippet" type="button">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
                 <span>Copy Snippet</span>
               </button>
             </div>
