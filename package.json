@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "demo": "tsx scripts/serve-demo.ts",
-    "build": "tsc",
+    "build": "tsc && node -e \"const fs = require('fs'); fs.cpSync('demo', 'public', { recursive: true });\"",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },

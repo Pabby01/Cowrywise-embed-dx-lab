@@ -1,5 +1,7 @@
 node_modules/
 dist/
+public/
 .env
 coverage/
 .DS_Store
+
