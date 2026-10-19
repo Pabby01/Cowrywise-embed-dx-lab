@@ -73,15 +73,28 @@ npm run dev -- --scenario=troubleshooting
 
 ---
 
-## 📚 Architectural & Integration Guides
+## 📚 Architectural & Integration Guides (Markdown & Web Versions)
 
-* 📖 **[5-Minute Developer Quickstart](docs/quickstart.md):** Get from 0 to 1 with official `@cowrywise/embed-node` SDK patterns.
-* 📊 **[Architecture & Sequence Diagrams](docs/architecture-and-flows.md):** Mermaid diagrams detailing asynchronous KYC, wallet funding, liquidations, and webhook loops.
-* 💡 **[Real-World Integration Scenarios](docs/integration-scenarios.md):** Architectural blueprints for Neobanks, HR/Payroll platforms, and E-commerce reward systems.
-* 🛠️ **[Developer Troubleshooting Matrix](docs/troubleshooting-matrix.md):** HTTP error codes, common friction points, and exact code remedies.
-* 🔔 **[Webhook & HMAC Architecture](docs/webhooks.md):** Deep dive into constant-time verification, idempotency in Redis/PostgreSQL, and local testing.
-* 📑 **[Developer Experience Audit & 90-Day Strategy](docs/developer-experience-audit.md):** Strategic DevRel roadmap for Cowrywise Embed.
-* ✅ **[Pre-Live Validation Checklist](docs/validation-checklist.md):** Mandatory checks before transitioning from mock mode to live production credentials.
+Every guide is available both as a markdown document in `docs/` and as an interactive, styled web guide on the local demo server (`http://localhost:3000`):
+
+* 📖 **5-Minute Developer Quickstart:** [Web Version](http://localhost:3000/quickstart.html) • [Markdown](docs/quickstart.md) — Get from 0 to 1 with official `@cowrywise/embed-node` SDK patterns.
+* 📊 **Architecture & Sequence Diagrams:** [Web Version](http://localhost:3000/flows.html) • [Markdown](docs/architecture-and-flows.md) — Mermaid diagrams detailing asynchronous KYC, wallet funding, liquidations, and webhook loops.
+* 💡 **Real-World Integration Scenarios:** [Web Version](http://localhost:3000/integrations.html) • [Markdown](docs/integration-scenarios.md) — Architectural blueprints for Neobanks, HR/Payroll platforms, and E-commerce reward systems.
+* 🛠️ **Developer Troubleshooting Matrix:** [Web Version](http://localhost:3000/troubleshooting.html) • [Markdown](docs/troubleshooting-matrix.md) — HTTP error codes, common friction points, and exact code remedies.
+* 🔔 **Webhook & HMAC Architecture:** [Web Version](http://localhost:3000/webhooks.html) • [Markdown](docs/webhooks.md) — Deep dive into constant-time verification, idempotency in Redis/PostgreSQL, and local testing.
+* 📑 **Developer Experience Audit & 90-Day Strategy:** [Web Version](http://localhost:3000/audit.html) • [Markdown](docs/developer-experience-audit.md) — Strategic DevRel roadmap for Cowrywise Embed.
+* ✅ **Pre-Live Validation Checklist:** [Web Version](http://localhost:3000/checklist.html) • [Markdown](docs/validation-checklist.md) — Interactive checks before transitioning from mock mode to live production credentials.
+
+---
+
+## 📦 Cloneable Fintech Web App Starters (`starters/`)
+
+Pre-built, standalone starter projects designed for rapid prototyping:
+
+* **[`starters/savings-app`](starters/savings-app):** **KoloVault** — Disciplined locked savings, target milestones, and maturity lock timers.
+* **[`starters/investment-portal`](starters/investment-portal):** **YieldNest** — SEC-regulated mutual funds discovery, risk profiler, and 1-click purchase portal.
+* **[`starters/roundup-app`](starters/roundup-app):** **SpareStash** — E-commerce checkout and debit card spare change round-up savings engine.
+* **[`starters/payroll-treasury`](starters/payroll-treasury):** **CorpYield** — B2B corporate payroll wealth split and employee benefit dashboard.
 
 ---
 
@@ -91,11 +104,20 @@ npm run dev -- --scenario=troubleshooting
 cowrywise-embed-dx-lab/
 ├── .github/workflows/
 │   └── ci.yml                     # Automated testing & typecheck CI
-├── demo/                          # 3D Fintech Web Showcase & Sandbox
-│   ├── index.html                 # Semantic UI with 3D card tilt & templates
-│   ├── styles.css                 # Glassmorphic, modern CSS design system
-│   └── app.js                     # Interactive sandbox state & live code switcher
-├── docs/                          # In-depth DevRel & technical guides
+├── demo/                          # Fintech Web Showcase, Sandbox & Web Docs
+│   ├── index.html                 # Interactive overview & live console
+│   ├── simulation.html            # Dual-pane API cockpit with real-time event logs
+│   ├── templates.html             # Cloneable starter apps & interactive app demos
+│   ├── quickstart.html            # Web version of 5-minute quickstart guide
+│   ├── integrations.html          # Web version of real-world integration scenarios
+│   ├── webhooks.html              # Web version of webhook HMAC security guide
+│   ├── checklist.html             # Web version of pre-live validation checklist
+│   ├── audit.html                 # Web version of 90-day DX strategy & audit
+│   ├── flows.html                 # Interactive architecture sequence diagrams
+│   ├── troubleshooting.html       # Searchable error catalog & fault injection
+│   ├── styles.css                 # Design system, rich 4-column footer & responsive grid
+│   └── app.js                     # In-browser state machine & modal app simulators
+├── docs/                          # In-depth DevRel & technical guides (Markdown)
 │   ├── quickstart.md              # 0 to 1 task-based quickstart
 │   ├── architecture-and-flows.md  # Mermaid sequence diagrams
 │   ├── integration-scenarios.md   # Neobank, HR, and E-Commerce blueprints
@@ -103,6 +125,11 @@ cowrywise-embed-dx-lab/
 │   ├── webhooks.md                # HMAC SHA-256 verification & idempotency
 │   ├── developer-experience-audit.md # 90-day DevRel roadmap
 │   └── validation-checklist.md    # Pre-live integration guardrails
+├── starters/                      # Standalone cloneable fintech application starters
+│   ├── savings-app/               # KoloVault disciplined locked savings starter
+│   ├── investment-portal/         # YieldNest mutual funds portal starter
+│   ├── roundup-app/               # SpareStash checkout spare change round-up starter
+│   └── payroll-treasury/          # CorpYield B2B payroll wealth split starter
 ├── scripts/
 │   └── serve-demo.ts              # Zero-dependency local preview server
 ├── src/
@@ -113,11 +140,6 @@ cowrywise-embed-dx-lab/
 │   ├── embed-client.ts            # In-memory mock engine (Accounts, Wallets, Assets, Savings)
 │   ├── index.ts                   # CLI scenario router & integration tour
 │   └── scenarios/                 # Modular integration flows
-│       ├── onboarding.ts
-│       ├── investing.ts
-│       ├── withdrawals.ts
-│       ├── webhooks.ts
-│       └── troubleshooting.ts
 └── test/
     ├── embed-client.test.ts       # Domain logic & business constraint tests
     └── webhook-verifier.test.ts   # Cryptographic verification & tamper tests

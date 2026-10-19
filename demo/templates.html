@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>3D Fintech Component Templates — Cowrywise Embed</title>
+  <title>Fintech Web App Starter Templates — Cowrywise Embed</title>
   <meta name="description"
-    content="Pre-built, customizable UI patterns and templates designed for consumer banking, payroll apps, and retail reward platforms embedding Cowrywise.">
+    content="Production-ready, cloneable web application templates and starter kits powered by Cowrywise Embed. Build locked savings apps, investment portals, round-up micro-savings, and payroll split tools.">
 
   <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,16 +30,18 @@
       <a href="index.html" class="logo-brand">
         <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
         <span class="logo-wordmark">cowrywise</span>
-
+        <span class="brand-badge">Embed DX</span>
       </a>
 
       <nav class="nav-links">
         <a href="index.html">Overview</a>
         <a href="simulation.html">Live Sandbox</a>
-        <a href="templates.html" class="active">3D Templates</a>
+        <a href="templates.html" class="active">App Templates</a>
+        <a href="quickstart.html">Quickstart</a>
         <a href="flows.html">Architecture Flows</a>
         <a href="troubleshooting.html">Troubleshooting</a>
         <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="simulation.html" class="btn-primary">Launch Sandbox ↗</a>
       </nav>
     </div>
   </header>
@@ -50,153 +52,458 @@
       <div class="breadcrumb">
         <a href="index.html">Overview</a>
         <span>/</span>
-        <span style="color:var(--cw-blue); font-weight:600;">3D Templates</span>
+        <span style="color:var(--cw-blue); font-weight:600;">App Templates</span>
       </div>
-      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:10px;">
-        Fintech UI Component Templates
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:12px;">
+        Fintech Web App Starter Templates
       </h1>
-      <p style="color:var(--cw-body); font-size:1.1rem; max-width:680px;">
-        Production-ready frontend components styled to match Cowrywise's design system. Drop them into your React,
-        Next.js, or mobile web applications.
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
+        Production-ready, cloneable application templates designed for developers embedding Cowrywise wealth features.
+        Clone any starter project below to launch disciplined savings apps, mutual fund portals, micro-investing widgets,
+        and B2B payroll splits in minutes.
       </p>
     </div>
   </section>
 
-  <!-- Templates Grid -->
+  <!-- Starters List Main -->
   <main class="section">
     <div class="container">
 
-      <div class="templates-grid">
-        <!-- Template 1 -->
-        <div class="template-card">
-          <div class="template-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-              <polyline points="17 6 23 6 23 12" />
-            </svg>
-          </div>
-          <h3 class="template-title">"Invest with Cowrywise" Modal</h3>
-          <p class="template-desc">
-            A drop-in investment drawer allowing users to compare fund managers, select risk tolerances, and allocate
-            capital with one click.
-          </p>
-          <div class="template-preview-box">
-            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">EMBEDDED PREVIEW
-            </div>
-            <div
-              style="background:white; border:1px solid #E2E8F0; padding:12px; border-radius:8px; margin-bottom:12px;">
-              <div style="font-size:0.9rem; font-weight:700; color:var(--cw-title);">Money Market Fund</div>
-              <div style="font-size:0.8rem; color:var(--cw-emerald); font-weight:600;">+16.5% Annualized Return</div>
-            </div>
-            <button class="widget-preview-btn btn-preview-template" data-template="Invest with Cowrywise Modal">
-              <span>Preview Live Widget</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
-          </div>
-          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-1-neobank--consumer-fintech-superapp"
-            target="_blank" class="btn-secondary" style="text-align:center; display:block;">View Architecture Guide</a>
-        </div>
+      <div class="starters-list">
 
-        <!-- Template 2 -->
-        <div class="template-card">
-          <div class="template-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="8" cy="8" r="6" />
-              <path d="M18.09 10.37A6 6 0 1 1 10.34 18" />
-              <path d="M7 6h1v4" />
-            </svg>
-          </div>
-          <h3 class="template-title">Spare Change "Round-Up" Card</h3>
-          <p class="template-desc">
-            Embed automated micro-investing into shopping checkout flows or debit card spend histories. Automatically
-            rounds up transactions.
-          </p>
-          <div class="template-preview-box">
-            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">EMBEDDED PREVIEW
+        <!-- Template 1: KoloVault (Locked & Target Savings) -->
+        <article class="starter-card">
+          <div class="starter-main">
+            <div class="starter-meta-bar">
+              <span class="starter-badge emerald">Next.js 14 App</span>
+              <span class="starter-badge">Locked Savings</span>
+              <span class="starter-stack-tag">TypeScript • Tailwind CSS • @cowrywise/embed-node</span>
             </div>
-            <div
-              style="display:flex; justify-content:space-between; align-items:center; background:white; border:1px solid #E2E8F0; padding:12px; border-radius:8px; margin-bottom:12px;">
-              <span style="font-size:0.85rem; font-weight:600; color:var(--cw-title);">Auto-Save Spare Change</span>
-              <span
-                style="font-size:0.75rem; font-weight:700; color:#03684B; background:var(--cw-emerald-subtle); padding:2px 8px; border-radius:4px;">ACTIVE</span>
-            </div>
-            <div style="font-size:0.85rem; color:var(--cw-body); font-family:var(--font-code); margin-bottom:12px;">
-              Accumulated: ₦14,800</div>
-            <button class="widget-preview-btn btn-preview-template" data-template="Spare Change Round-Up Widget">
-              <span>Preview Live Widget</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
-          </div>
-          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-3-e-commerce--retail-loyalty-rewards-program"
-            target="_blank" class="btn-secondary" style="text-align:center; display:block;">View Architecture Guide</a>
-        </div>
+            <h2 class="starter-title">KoloVault — Disciplined Savings & Target Goals Web App</h2>
+            <p class="starter-desc">
+              A full-stack savings application allowing consumer fintech users to create target milestone funds and disciplined locked vaults with guaranteed annual returns (+12.5% to +15.5% APY). Includes countdown maturity timers, 24-hour cooling-off withdrawal locks, and automated interest calculators.
+            </p>
 
-        <!-- Template 3 -->
-        <div class="template-card">
-          <div class="template-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-          </div>
-          <h3 class="template-title">Disciplined Locked Savings Card</h3>
-          <p class="template-desc">
-            Visual milestone tracker with countdown locks to protect user funds and reinforce long-term wealth habits
-            (minimum 3 months).
-          </p>
-          <div class="template-preview-box">
-            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">EMBEDDED PREVIEW
-            </div>
-            <div
-              style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600; margin-bottom:6px;">
-              <span style="color:var(--cw-title);">Emergency Fund</span>
-              <span style="color:var(--cw-blue); font-weight:700;">6 Months Lock</span>
-            </div>
-            <div
-              style="width:100%; height:8px; background:#E2E8F0; border-radius:99px; overflow:hidden; margin-bottom:10px;">
-              <div
-                style="width:65%; height:100%; background:linear-gradient(90deg, var(--cw-blue), var(--cw-emerald));">
+            <div class="starter-endpoints-box">
+              <div class="starter-endpoints-label">Cowrywise Embed Endpoints Used</div>
+              <div class="endpoint-pills">
+                <span class="endpoint-pill">POST /api/v1/savings/create</span>
+                <span class="endpoint-pill">GET /api/v1/savings/plans</span>
+                <span class="endpoint-pill">POST /api/v1/wallets/deposit</span>
+                <span class="endpoint-pill">GET /api/v1/wallets</span>
               </div>
             </div>
-            <div style="font-size:0.8rem; color:var(--cw-muted); font-weight:600; margin-bottom:12px;">₦325,000 /
-              ₦500,000 Target</div>
-            <button class="widget-preview-btn btn-preview-template" data-template="Locked Savings Milestone Tracker">
-              <span>Preview Live Widget</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
+
+            <div class="clone-box">
+              <code>git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/savings-app</code>
+              <button class="btn-clone-copy" type="button" data-cmd="git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/savings-app">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+
+            <div class="starter-actions">
+              <button class="btn-primary btn-launch-app-demo" type="button" data-app="kolovault">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                <span>Test Drive KoloVault Demo</span>
+              </button>
+              <a href="flows.html" class="btn-secondary">View Architecture Sequence</a>
+            </div>
           </div>
-          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab/blob/main/docs/integration-scenarios.md#scenario-2-hr-tech--payroll--remuneration-platform"
-            target="_blank" class="btn-secondary" style="text-align:center; display:block;">View Architecture Guide</a>
-        </div>
+
+          <div class="starter-preview-col">
+            <div class="mock-app-preview">
+              <div class="mock-app-topbar">
+                <div class="mock-app-brand">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cw-emerald)" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  <span>KoloVault App</span>
+                </div>
+                <span style="font-size:0.72rem; color:#94A3B8; font-family:var(--font-code);">SEC-Regulated</span>
+              </div>
+              <div class="mock-app-content">
+                <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:4px;">ACTIVE SAVINGS PLAN</div>
+                <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;">
+                  <span style="font-size:1.15rem; font-weight:800; color:var(--cw-title);">Emergency Buffer</span>
+                  <span style="font-size:0.75rem; font-weight:700; color:#03684B; background:var(--cw-emerald-subtle); padding:2px 8px; border-radius:4px;">6 MONTHS LOCK</span>
+                </div>
+
+                <div style="width:100%; height:8px; background:#E2E8F0; border-radius:99px; overflow:hidden; margin-bottom:8px;">
+                  <div style="width:65%; height:100%; background:linear-gradient(90deg, var(--cw-blue), var(--cw-emerald));"></div>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600; color:var(--cw-muted); margin-bottom:14px;">
+                  <span>Saved: ₦325,000</span>
+                  <span>Target: ₦500,000 (65%)</span>
+                </div>
+
+                <div class="mock-stat-grid">
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">APY Return</div>
+                    <div class="mock-stat-val" style="color:var(--cw-emerald);">+15.0%</div>
+                  </div>
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">Maturity Date</div>
+                    <div class="mock-stat-val" style="font-size:0.85rem; font-family:var(--font-code);">Oct 24, 2026</div>
+                  </div>
+                </div>
+
+                <div style="background:#FEF3C7; border:1px solid #FDE68A; border-radius:6px; padding:8px 10px; font-size:0.74rem; color:#92400E; display:flex; gap:6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px;">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>Funds are locked until maturity date to enforce disciplined financial growth.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Template 2: YieldNest (Mutual Funds & Micro-Investing Portal) -->
+        <article class="starter-card">
+          <div class="starter-main">
+            <div class="starter-meta-bar">
+              <span class="starter-badge purple">React + Vite Portal</span>
+              <span class="starter-badge">Mutual Funds</span>
+              <span class="starter-stack-tag">TypeScript • Chart.js • @cowrywise/embed-node</span>
+            </div>
+            <h2 class="starter-title">YieldNest — Mutual Funds & Micro-Investing Portal</h2>
+            <p class="starter-desc">
+              A comprehensive retail investment portal allowing users to compare top-tier asset managers (Stanbic IBTC, Meristem, United Capital), take interactive risk profiling questionnaires, purchase fund units in 1-click from their digital wallet, and inspect daily dividend accruals.
+            </p>
+
+            <div class="starter-endpoints-box">
+              <div class="starter-endpoints-label">Cowrywise Embed Endpoints Used</div>
+              <div class="endpoint-pills">
+                <span class="endpoint-pill">GET /api/v1/assets</span>
+                <span class="endpoint-pill">POST /api/v1/assets/invest</span>
+                <span class="endpoint-pill">GET /api/v1/portfolio</span>
+                <span class="endpoint-pill">GET /api/v1/prices</span>
+              </div>
+            </div>
+
+            <div class="clone-box">
+              <code>git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/investment-portal</code>
+              <button class="btn-clone-copy" type="button" data-cmd="git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/investment-portal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+
+            <div class="starter-actions">
+              <button class="btn-primary btn-launch-app-demo" type="button" data-app="yieldnest">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                <span>Test Drive YieldNest Demo</span>
+              </button>
+              <a href="integrations.html" class="btn-secondary">View Integration Blueprint</a>
+            </div>
+          </div>
+
+          <div class="starter-preview-col">
+            <div class="mock-app-preview">
+              <div class="mock-app-topbar">
+                <div class="mock-app-brand">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                    <polyline points="17 6 23 6 23 12" />
+                  </svg>
+                  <span>YieldNest Portal</span>
+                </div>
+                <span style="font-size:0.72rem; color:#94A3B8; font-family:var(--font-code);">Live Net Worth</span>
+              </div>
+              <div class="mock-app-content">
+                <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:4px;">TOTAL PORTFOLIO VALUE</div>
+                <div style="font-size:1.6rem; font-weight:800; color:var(--cw-title); margin-bottom:12px;">₦1,450,800.00</div>
+
+                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; margin-bottom:12px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <span style="font-size:0.85rem; font-weight:700; color:var(--cw-title);">Cowrywise Money Market</span>
+                    <span style="font-size:0.8rem; font-weight:700; color:var(--cw-emerald);">+16.5% APY</span>
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--cw-muted);">Units: 12,450 • Low Risk • Daily Dividends</div>
+                </div>
+
+                <div class="mock-stat-grid">
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">30-Day Earnings</div>
+                    <div class="mock-stat-val" style="color:var(--cw-emerald);">+₦19,850</div>
+                  </div>
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">Wallet Balance</div>
+                    <div class="mock-stat-val" style="font-size:0.95rem;">₦85,000</div>
+                  </div>
+                </div>
+
+                <button class="btn-primary" style="width:100%; justify-content:center; padding:10px; font-size:0.85rem;" type="button">
+                  + Buy Mutual Fund Units
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Template 3: SpareStash (E-Commerce Round-Up & Micro-Savings) -->
+        <article class="starter-card">
+          <div class="starter-main">
+            <div class="starter-meta-bar">
+              <span class="starter-badge">E-Commerce & Retail</span>
+              <span class="starter-badge emerald">Auto Round-Up</span>
+              <span class="starter-stack-tag">Web Components • Node.js • Express • Webhooks</span>
+            </div>
+            <h2 class="starter-title">SpareStash — Checkout Spare Change Round-Up Engine</h2>
+            <p class="starter-desc">
+              Embed automated micro-investing into shopping checkout carts or debit card spend feeds. Automatically rounds up checkout balances to the nearest ₦100 or ₦500 and triggers an automatic sweep into high-yield mutual funds once accumulated spare change reaches ₦1,000.
+            </p>
+
+            <div class="starter-endpoints-box">
+              <div class="starter-endpoints-label">Cowrywise Embed Endpoints Used</div>
+              <div class="endpoint-pills">
+                <span class="endpoint-pill">POST /api/v1/wallets/transfer</span>
+                <span class="endpoint-pill">POST /api/v1/assets/invest</span>
+                <span class="endpoint-pill">POST /webhooks (wallet.funded)</span>
+                <span class="endpoint-pill">GET /api/v1/accounts</span>
+              </div>
+            </div>
+
+            <div class="clone-box">
+              <code>git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/roundup-app</code>
+              <button class="btn-clone-copy" type="button" data-cmd="git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/roundup-app">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+
+            <div class="starter-actions">
+              <button class="btn-primary btn-launch-app-demo" type="button" data-app="sparestash">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                <span>Test Drive SpareStash Demo</span>
+              </button>
+              <a href="integrations.html#scenario-3" class="btn-secondary">View Retail Wealthback Guide</a>
+            </div>
+          </div>
+
+          <div class="starter-preview-col">
+            <div class="mock-app-preview">
+              <div class="mock-app-topbar">
+                <div class="mock-app-brand">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cw-emerald)" stroke-width="2">
+                    <circle cx="8" cy="8" r="6" />
+                    <path d="M18.09 10.37A6 6 0 1 1 10.34 18" />
+                    <path d="M7 6h1v4" />
+                  </svg>
+                  <span>SpareStash Checkout</span>
+                </div>
+                <span style="font-size:0.72rem; color:#94A3B8; font-family:var(--font-code);">Drop-In Widget</span>
+              </div>
+              <div class="mock-app-content">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <span style="font-size:0.85rem; color:var(--cw-body);">Store Purchase:</span>
+                  <span style="font-size:0.95rem; font-weight:700; color:var(--cw-title);">₦4,320.00</span>
+                </div>
+
+                <div style="background:var(--cw-blue-subtle); border:1px solid rgba(0,102,245,0.2); border-radius:8px; padding:12px; margin-bottom:14px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <span style="font-size:0.82rem; font-weight:700; color:var(--cw-blue);">Round-Up to ₦4,500</span>
+                    <span style="font-size:0.82rem; font-weight:800; color:var(--cw-emerald);">+₦180 to Wealth</span>
+                  </div>
+                  <div style="font-size:0.74rem; color:var(--cw-body);">Invests your spare change automatically into Money Market Fund.</div>
+                </div>
+
+                <div class="mock-stat-grid">
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">Accumulated Stash</div>
+                    <div class="mock-stat-val" style="color:var(--cw-blue);">₦14,800</div>
+                  </div>
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">Auto-Sweep Rule</div>
+                    <div class="mock-stat-val" style="font-size:0.8rem; color:#03684B;">Every ₦1,000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Template 4: CorpYield (B2B HR Payroll Split & Corporate Treasury) -->
+        <article class="starter-card">
+          <div class="starter-main">
+            <div class="starter-meta-bar">
+              <span class="starter-badge purple">B2B SaaS / HR Tech</span>
+              <span class="starter-badge">Payroll Split</span>
+              <span class="starter-stack-tag">Next.js 14 • PostgreSQL • Redis • BullMQ</span>
+            </div>
+            <h2 class="starter-title">CorpYield — Automated Payroll Wealth Split & Treasury Dashboard</h2>
+            <p class="starter-desc">
+              A corporate employee benefit system enabling HR platforms to empower corporate workers to automatically split net salaries into disciplined savings and sovereign Eurobonds before direct bank disbursement ("Pay Yourself First"). Includes automated virtual account generation and webhook listeners.
+            </p>
+
+            <div class="starter-endpoints-box">
+              <div class="starter-endpoints-label">Cowrywise Embed Endpoints Used</div>
+              <div class="endpoint-pills">
+                <span class="endpoint-pill">POST /api/v1/accounts/create</span>
+                <span class="endpoint-pill">POST /api/v1/wallets/virtual-accounts</span>
+                <span class="endpoint-pill">POST /webhooks (wallet.funded)</span>
+                <span class="endpoint-pill">POST /api/v1/savings/create</span>
+              </div>
+            </div>
+
+            <div class="clone-box">
+              <code>git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/payroll-treasury</code>
+              <button class="btn-clone-copy" type="button" data-cmd="git clone https://github.com/Pabby01/Cowrywise-embed-dx-lab.git && cd cowrywise-embed-dx-lab/starters/payroll-treasury">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+
+            <div class="starter-actions">
+              <button class="btn-primary btn-launch-app-demo" type="button" data-app="corpyield">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                <span>Test Drive CorpYield Demo</span>
+              </button>
+              <a href="integrations.html#scenario-2" class="btn-secondary">View Payroll Architecture</a>
+            </div>
+          </div>
+
+          <div class="starter-preview-col">
+            <div class="mock-app-preview">
+              <div class="mock-app-topbar">
+                <div class="mock-app-brand">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                  <span>CorpYield Portal</span>
+                </div>
+                <span style="font-size:0.72rem; color:#94A3B8; font-family:var(--font-code);">HR Super-Admin</span>
+              </div>
+              <div class="mock-app-content">
+                <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; margin-bottom:4px;">MONTHLY SALARY SPLIT CONFIG</div>
+                <div style="font-size:1.2rem; font-weight:800; color:var(--cw-title); margin-bottom:12px;">₦500,000 / month</div>
+
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; background:#F8FAFC; padding:8px 12px; border-radius:6px; border:1px solid #E2E8F0;">
+                    <span style="font-weight:600;">10% Locked Emergency Fund</span>
+                    <strong style="color:var(--cw-emerald);">₦50,000</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; background:#F8FAFC; padding:8px 12px; border-radius:6px; border:1px solid #E2E8F0;">
+                    <span style="font-weight:600;">15% Sovereign Eurobonds</span>
+                    <strong style="color:var(--cw-blue);">₦75,000</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; background:#F8FAFC; padding:8px 12px; border-radius:6px; border:1px solid #E2E8F0;">
+                    <span style="font-weight:600;">75% Net Take-Home Pay</span>
+                    <strong>₦375,000</strong>
+                  </div>
+                </div>
+
+                <div style="font-size:0.74rem; color:var(--cw-muted); text-align:center;">
+                  Disburses automatically via Cowrywise Virtual Accounts on payday.
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
 
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Comprehensive Global Footer -->
   <footer class="footer">
     <div class="container">
-      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:12px;">
-        <img src="assets/cowrywise-logo.png" alt="Cowrywise" style="width:28px; height:28px; border-radius:50%;" />
-        <strong style="color:var(--cw-title); font-size:1.1rem;">Cowrywise Embed Developer Experience Lab</strong>
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Info -->
+        <div class="footer-col brand-col">
+          <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
+            <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+            <span class="logo-wordmark">cowrywise</span>
+            <span class="brand-badge">Embed DX</span>
+          </a>
+          <p class="footer-desc">
+            The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
+            mutual funds, and automated wealth into modern web & mobile fintech products.
+          </p>
+          <div class="footer-author-box">
+            <div class="footer-author-label">Prepared by</div>
+            <div class="footer-author-name">Adeola Lasisi</div>
+            <div class="footer-author-role">Developer Relations Case Study</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Interactive Blueprints & Sandboxes -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Interactive Sandboxes</h4>
+          <ul class="footer-links">
+            <li><a href="simulation.html">Live API Simulation Cockpit</a></li>
+            <li><a href="templates.html">Fintech Starter Apps</a></li>
+            <li><a href="flows.html">Architecture & Sequence Flows</a></li>
+            <li><a href="troubleshooting.html">Troubleshooting Matrix</a></li>
+            <li><a href="index.html#sandbox-preview">Editable API Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Web Guides & Documentation -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Developer Guides</h4>
+          <ul class="footer-links">
+            <li><a href="quickstart.html">5-Minute Quickstart Guide</a></li>
+            <li><a href="integrations.html">Real-World Integration Scenarios</a></li>
+            <li><a href="webhooks.html">Webhook & HMAC Security</a></li>
+            <li><a href="checklist.html">Pre-Live Validation Checklist</a></li>
+            <li><a href="audit.html">90-Day DX Strategy & Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Official Resources -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Official Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+          </ul>
+        </div>
       </div>
-      <p style="margin-bottom:8px;">
-        Independent case study and interactive starter pack prepared by Adeola Lasisi.
-      </p>
-      <p>
-        <a href="https://developers.cowrywise.com" target="_blank">Official Cowrywise Docs</a> •
-        <a href="https://github.com/cowrywise/embed-node" target="_blank">Official Node SDK</a> •
-        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank">GitHub Repository</a>
-      </p>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Cowrywise Embed Developer Experience Lab. Independent case study by Adeola Lasisi.</span>
+          <span class="footer-pill-mock">Local Mock Engine: Online (Zero Live Credentials Needed)</span>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">GitHub</a>
+          <span>•</span>
+          <a href="quickstart.html">Documentation</a>
+          <span>•</span>
+          <a href="troubleshooting.html">Error Catalog</a>
+        </div>
+      </div>
     </div>
   </footer>
 

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Developer Experience (DX) Audit & Strategy — Cowrywise Embed</title>
+  <meta name="description"
+    content="Independent 90-day developer relations audit, findings, hypotheses, and strategic roadmap for Cowrywise Embed, prepared by Adeola Lasisi.">
+
+  <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js"></script>
+</head>
+
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo-brand">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+        <span class="logo-wordmark">cowrywise</span>
+        <span class="brand-badge">Embed DX</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="simulation.html">Live Sandbox</a>
+        <a href="templates.html">App Templates</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="flows.html">Architecture Flows</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="simulation.html" class="btn-primary">Launch Sandbox ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sub-page Banner -->
+  <section class="page-hero-banner">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Overview</a>
+        <span>/</span>
+        <a href="quickstart.html">Guides</a>
+        <span>/</span>
+        <span style="color:var(--cw-blue); font-weight:600;">DX Strategy & Audit</span>
+      </div>
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:12px;">
+        Cowrywise Embed: Initial Developer Experience Audit
+      </h1>
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
+        A strategic DevRel roadmap and independent desk review by Adeola Lasisi. Connects distributed developer assets into a friction-free onboarding funnel.
+      </p>
+    </div>
+  </section>
+
+  <!-- Docs Layout Section -->
+  <main class="section">
+    <div class="container">
+      <div class="docs-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+          <div class="docs-nav-group">
+            <div class="docs-nav-title">Developer Guides</div>
+            <div class="docs-nav-items">
+              <a href="quickstart.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                <span>5-Minute Quickstart</span>
+              </a>
+              <a href="integrations.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                <span>Integration Scenarios</span>
+              </a>
+              <a href="webhooks.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span>Webhooks & HMAC</span>
+              </a>
+              <a href="checklist.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <span>Pre-Live Checklist</span>
+              </a>
+              <a href="audit.html" class="docs-nav-item active">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                <span>90-Day DX Strategy</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="docs-nav-group">
+            <div class="docs-nav-title">Interactive Tools</div>
+            <div class="docs-nav-items">
+              <a href="simulation.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                </svg>
+                <span>Live API Simulator</span>
+              </a>
+              <a href="templates.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" />
+                </svg>
+                <span>App Starter Blueprints</span>
+              </a>
+              <a href="flows.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+                <span>Architecture Flows</span>
+              </a>
+              <a href="troubleshooting.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span>Troubleshooting Matrix</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Content Area -->
+        <article class="docs-body-card docs-prose">
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px 20px; margin-bottom:28px;">
+            <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700; text-transform:uppercase;">AUTHOR & DATE</div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--cw-title);">Adeola Lasisi • October 2026</div>
+            <div style="font-size:0.85rem; color:var(--cw-blue); font-weight:600;">Developer Relations Case Study for Cowrywise Embed</div>
+          </div>
+
+          <h2>Executive Summary</h2>
+          <p>
+            Cowrywise already possesses impressive developer-facing assets: an Embed developer portal, comprehensive API reference material, implementation guides, public Node.js and Python libraries, an investments flowchart, webhook documentation, and an active developer community channel.
+          </p>
+          <p>
+            The major strategic opportunity is to connect these separate resources into a <strong>frictionless, opinionated path from discovery to a first successful production integration</strong>.
+          </p>
+
+          <h2>1. Existing Surface Area Review</h2>
+          <ul>
+            <li>API Reference, documentation endpoints, and SDK client libraries.</li>
+            <li>Step-by-step guides for account creation, identity verification, portfolios, investment creation, funding, liquidation, withdrawals, and webhooks.</li>
+            <li>Official client libraries: <code>@cowrywise/embed-node</code> and <code>embedpy</code>.</li>
+            <li>A developer community channel for partner support.</li>
+          </ul>
+
+          <h2>2. Key Findings & Strategic Recommendations</h2>
+
+          <h3>Finding A: Distributed Documentation Surfaces</h3>
+          <p>
+            Resources are spread across reference docs, standalone guides, GitHub repos, and community chats without a single clear "Start Here" path.
+          </p>
+          <div class="docs-callout">
+            <strong>Actionable Solution:</strong> Create an unified, task-oriented 5-minute quickstart taking developers from credential acquisition to a first funded mutual fund purchase in one linear workflow.
+          </div>
+
+          <h3>Finding B: Sandbox Credential Onboarding Friction</h3>
+          <p>
+            Developers applying via Early Access forms wait several days before seeing a response, leading to drop-off and stalled exploration.
+          </p>
+          <div class="docs-callout">
+            <strong>Actionable Solution:</strong> Provide instant zero-dependency in-memory mock engines (like this DX Lab) so developers can build and validate full fintech apps before live sandbox approval.
+          </div>
+
+          <h3>Finding C: Multi-Step Asynchronous Flow Complexity</h3>
+          <p>
+            Real-world fintech flows (KYC verification, virtual account funding, 24-hour liquidation cooling periods) require sequence clarity.
+          </p>
+          <div class="docs-callout">
+            <strong>Actionable Solution:</strong> Publish interactive sequence diagrams and webhook simulation tools illustrating state transitions and retry semantics.
+          </div>
+
+          <h2>3. Prioritized 90-Day DevRel Action Plan</h2>
+
+          <div style="display:flex; flex-direction:column; gap:20px; margin:24px 0;">
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:20px;">
+              <h4 style="margin:0 0 8px; color:var(--cw-title); font-size:1.1rem;">Days 1–30 — Understand and Baseline</h4>
+              <p style="margin:0; font-size:0.92rem; color:var(--cw-body);">
+                1. Audit sandbox access pipelines and confirm current authentication contracts.<br>
+                2. Run 3–5 developer usability testing sessions on first-time onboarding.<br>
+                3. Establish quantitative baselines: Time to first successful 200 OK request, quickstart completion rates, and support friction themes.
+              </p>
+            </div>
+
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:20px;">
+              <h4 style="margin:0 0 8px; color:var(--cw-blue); font-size:1.1rem;">Days 31–60 — Ship Focused DX Tooling</h4>
+              <p style="margin:0; font-size:0.92rem; color:var(--cw-body);">
+                1. Publish task-oriented interactive quickstarts with copyable code snippets.<br>
+                2. Release cloneable fintech web app starters (Locked Savings, Investment Portals, Round-Up Widgets).<br>
+                3. Launch error troubleshooting matrix directly mapping HTTP status codes to code remediations.
+              </p>
+            </div>
+
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:20px;">
+              <h4 style="margin:0 0 8px; color:#03684B; font-size:1.1rem;">Days 61–90 — Community Validation & Scale</h4>
+              <p style="margin:0; font-size:0.92rem; color:var(--cw-body);">
+                1. Host a hands-on developer workshop using the starter blueprints.<br>
+                2. Measure reduction in time-to-first-request against Day 1 baselines.<br>
+                3. Publish a public "What We Shipped & What We Learned" retrospective report.
+              </p>
+            </div>
+          </div>
+
+          <h2>4. Proposed Developer Success Metrics</h2>
+          <ul>
+            <li><strong>Time to First Successful Request (TTFSR):</strong> Elapsed minutes from initial repo clone to authenticated request response.</li>
+            <li><strong>Quickstart Completion Rate:</strong> Percentage of new developers completing the 4-step onboarding journey without abandonment.</li>
+            <li><strong>Support Ticket Deflection:</strong> Reduction in recurring inquiries regarding BVN validation, webhook signatures, and locked withdrawal periods.</li>
+            <li><strong>Starter App Adoption:</strong> GitHub clones, forks, and deployment of pre-built fintech app starter templates.</li>
+          </ul>
+
+          <div style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+            <a href="templates.html" class="btn-primary" style="padding:12px 24px;">Explore Starter Templates →</a>
+            <a href="quickstart.html" class="btn-secondary" style="padding:12px 24px;">Follow Quickstart Guide →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Comprehensive Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Info -->
+        <div class="footer-col brand-col">
+          <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
+            <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+            <span class="logo-wordmark">cowrywise</span>
+            <span class="brand-badge">Embed DX</span>
+          </a>
+          <p class="footer-desc">
+            The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
+            mutual funds, and automated wealth into modern web & mobile fintech products.
+          </p>
+          <div class="footer-author-box">
+            <div class="footer-author-label">Prepared by</div>
+            <div class="footer-author-name">Adeola Lasisi</div>
+            <div class="footer-author-role">Developer Relations Case Study</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Interactive Blueprints & Sandboxes -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Interactive Sandboxes</h4>
+          <ul class="footer-links">
+            <li><a href="simulation.html">Live API Simulation Cockpit</a></li>
+            <li><a href="templates.html">Fintech Starter Apps</a></li>
+            <li><a href="flows.html">Architecture & Sequence Flows</a></li>
+            <li><a href="troubleshooting.html">Troubleshooting Matrix</a></li>
+            <li><a href="index.html#sandbox-preview">Editable API Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Web Guides & Documentation -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Developer Guides</h4>
+          <ul class="footer-links">
+            <li><a href="quickstart.html">5-Minute Quickstart Guide</a></li>
+            <li><a href="integrations.html">Real-World Integration Scenarios</a></li>
+            <li><a href="webhooks.html">Webhook & HMAC Security</a></li>
+            <li><a href="checklist.html">Pre-Live Validation Checklist</a></li>
+            <li><a href="audit.html">90-Day DX Strategy & Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Official Resources -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Official Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Cowrywise Embed Developer Experience Lab. Independent case study by Adeola Lasisi.</span>
+          <span class="footer-pill-mock">Local Mock Engine: Online (Zero Live Credentials Needed)</span>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">GitHub</a>
+          <span>•</span>
+          <a href="quickstart.html">Documentation</a>
+          <span>•</span>
+          <a href="troubleshooting.html">Error Catalog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

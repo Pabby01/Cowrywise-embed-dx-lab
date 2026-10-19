@@ -36,7 +36,8 @@
       <nav class="nav-links">
         <a href="index.html">Overview</a>
         <a href="simulation.html">Live Sandbox</a>
-        <a href="templates.html">3D Templates</a>
+        <a href="templates.html">App Templates</a>
+        <a href="quickstart.html">Quickstart</a>
         <a href="flows.html" class="active">Architecture Flows</a>
         <a href="troubleshooting.html">Troubleshooting</a>
         <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
@@ -437,21 +438,79 @@ export function verifyWebhook(rawPayload, headerSignature, secret) {
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Comprehensive Global Footer -->
   <footer class="footer">
     <div class="container">
-      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:12px;">
-        <img src="assets/cowrywise-logo.png" alt="Cowrywise" style="width:28px; height:28px; border-radius:50%;" />
-        <strong style="color:var(--cw-title); font-size:1.1rem;">Cowrywise Embed Developer Experience Lab</strong>
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Info -->
+        <div class="footer-col brand-col">
+          <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
+            <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+            <span class="logo-wordmark">cowrywise</span>
+            <span class="brand-badge">Embed DX</span>
+          </a>
+          <p class="footer-desc">
+            The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
+            mutual funds, and automated wealth into modern web & mobile fintech products.
+          </p>
+          <div class="footer-author-box">
+            <div class="footer-author-label">Prepared by</div>
+            <div class="footer-author-name">Adeola Lasisi</div>
+            <div class="footer-author-role">Developer Relations Case Study</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Interactive Blueprints & Sandboxes -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Interactive Sandboxes</h4>
+          <ul class="footer-links">
+            <li><a href="simulation.html">Live API Simulation Cockpit</a></li>
+            <li><a href="templates.html">Fintech Starter Apps</a></li>
+            <li><a href="flows.html">Architecture & Sequence Flows</a></li>
+            <li><a href="troubleshooting.html">Troubleshooting Matrix</a></li>
+            <li><a href="index.html#sandbox-preview">Editable API Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Web Guides & Documentation -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Developer Guides</h4>
+          <ul class="footer-links">
+            <li><a href="quickstart.html">5-Minute Quickstart Guide</a></li>
+            <li><a href="integrations.html">Real-World Integration Scenarios</a></li>
+            <li><a href="webhooks.html">Webhook & HMAC Security</a></li>
+            <li><a href="checklist.html">Pre-Live Validation Checklist</a></li>
+            <li><a href="audit.html">90-Day DX Strategy & Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Official Resources -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Official Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+          </ul>
+        </div>
       </div>
-      <p style="margin-bottom:8px;">
-        Independent case study and interactive starter pack prepared by Adeola Lasisi.
-      </p>
-      <p>
-        <a href="https://developers.cowrywise.com" target="_blank">Official Cowrywise Docs</a> •
-        <a href="https://github.com/cowrywise/embed-node" target="_blank">Official Node SDK</a> •
-        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank">GitHub Repository</a>
-      </p>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Cowrywise Embed Developer Experience Lab. Independent case study by Adeola Lasisi.</span>
+          <span class="footer-pill-mock">Local Mock Engine: Online (Zero Live Credentials Needed)</span>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">GitHub</a>
+          <span>•</span>
+          <a href="quickstart.html">Documentation</a>
+          <span>•</span>
+          <a href="troubleshooting.html">Error Catalog</a>
+        </div>
+      </div>
     </div>
   </footer>
 

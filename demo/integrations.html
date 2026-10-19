@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Real-World Integration Scenarios — Cowrywise Embed</title>
+  <meta name="description"
+    content="Architectural blueprints for Neobanks, HR/Payroll platforms, and retail reward systems embedding Cowrywise wealth management.">
+
+  <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js"></script>
+</head>
+
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo-brand">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+        <span class="logo-wordmark">cowrywise</span>
+        <span class="brand-badge">Embed DX</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="simulation.html">Live Sandbox</a>
+        <a href="templates.html">App Templates</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="flows.html">Architecture Flows</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="simulation.html" class="btn-primary">Launch Sandbox ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sub-page Banner -->
+  <section class="page-hero-banner">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Overview</a>
+        <span>/</span>
+        <a href="quickstart.html">Guides</a>
+        <span>/</span>
+        <span style="color:var(--cw-blue); font-weight:600;">Integration Scenarios</span>
+      </div>
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:12px;">
+        Real-World Integration Scenarios
+      </h1>
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
+        Detailed production architectures showing how Neobanks, HR/Payroll platforms, and E-commerce retailers embed Cowrywise wealth features to increase user retention and customer lifetime value.
+      </p>
+    </div>
+  </section>
+
+  <!-- Docs Layout Section -->
+  <main class="section">
+    <div class="container">
+      <div class="docs-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+          <div class="docs-nav-group">
+            <div class="docs-nav-title">Developer Guides</div>
+            <div class="docs-nav-items">
+              <a href="quickstart.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                <span>5-Minute Quickstart</span>
+              </a>
+              <a href="integrations.html" class="docs-nav-item active">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                <span>Integration Scenarios</span>
+              </a>
+              <a href="webhooks.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span>Webhooks & HMAC</span>
+              </a>
+              <a href="checklist.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <span>Pre-Live Checklist</span>
+              </a>
+              <a href="audit.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                <span>90-Day DX Strategy</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="docs-nav-group">
+            <div class="docs-nav-title">Interactive Tools</div>
+            <div class="docs-nav-items">
+              <a href="simulation.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                </svg>
+                <span>Live API Simulator</span>
+              </a>
+              <a href="templates.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" />
+                </svg>
+                <span>App Starter Blueprints</span>
+              </a>
+              <a href="flows.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+                <span>Architecture Flows</span>
+              </a>
+              <a href="troubleshooting.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span>Troubleshooting Matrix</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Content Area -->
+        <article class="docs-body-card docs-prose">
+          <h2 id="scenario-1">Scenario 1: Neobank & Consumer Fintech SuperApp</h2>
+          <h3>Context & Business Goal</h3>
+          <p>
+            A digital banking app with 500,000 active retail accounts wants to increase user retention and deposit stickiness by offering automated high-yield savings and mutual fund investments directly from their primary checking balance.
+          </p>
+
+          <h3>Architecture & Data Flow</h3>
+          <ol>
+            <li>
+              <strong>Unified KYC Propagation:</strong> Since the neobank has already performed BVN verification during customer onboarding, their backend automatically provisions a Cowrywise account via <code>api.accounts.createAccount()</code> and verifies identity via <code>api.accounts.updateIdentity()</code> in a background worker, removing redundant customer friction.
+            </li>
+            <li>
+              <strong>Automated "Round-Up" Savings:</strong>
+              <ul>
+                <li>Every time a customer spends using their debit card (e.g., spending ₦1,420 at a supermarket), the system rounds up to the nearest ₦100 (₦80 spare change difference).</li>
+                <li>Once accumulated spare change hits ₦1,000, the app funds the user's investment wallet and triggers an automated buy order into the <code>Cowrywise Money Market Fund</code>.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Consolidated In-App Net Worth Card:</strong> The mobile app queries <code>getPortfolioSummary()</code> to render a consolidated net-worth breakdown directly beside the user's active checking account balance.
+            </li>
+          </ol>
+
+          <div class="docs-callout">
+            <strong>Key Benefit:</strong> Customers keep higher balances within the neobank ecosystem rather than transferring funds out to competing wealth management apps.
+          </div>
+
+          <h2 id="scenario-2">Scenario 2: HR Tech / Payroll & Remuneration Platform</h2>
+          <h3>Context & Business Goal</h3>
+          <p>
+            A modern B2B SaaS payroll provider wants to empower corporate employees to automatically split their monthly net salaries into disciplined wealth products before the funds reach their retail bank accounts ("Pay Yourself First").
+          </p>
+
+          <h3>Architecture & Data Flow</h3>
+          <ol>
+            <li>
+              <strong>Employee Opt-In & Allocation Slider:</strong>
+              In the employee self-service portal, employees configure a monthly wealth allocation (e.g. 10% to Emergency Savings, 15% to Sovereign Eurobonds, 75% to liquid checking).
+            </li>
+            <li>
+              <strong>Direct Payroll Split via Virtual Accounts:</strong>
+              <ul>
+                <li>On payday, the employer disburses the designated 25% directly to Cowrywise Embed wallets via dedicated virtual accounts.</li>
+                <li>The payroll platform listens for the <code>wallet.funded</code> webhook event.</li>
+                <li>Upon receiving the webhook, the platform automatically calls <code>api.savings.createSavingsPlan()</code> and <code>api.assets.investInAsset()</code> on behalf of each participating employee.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Tax & Regulatory Reporting:</strong>
+              Employees download a certified annual statement showing interest earnings and capital gains for statutory tax returns.
+            </li>
+          </ol>
+
+          <h2 id="scenario-3">Scenario 3: E-Commerce & Retail Loyalty Rewards ("Wealthback")</h2>
+          <h3>Context & Business Goal</h3>
+          <p>
+            A high-volume retail marketplace replaces traditional points-based loyalty cards with "Wealthback" — converting merchant cashbacks and reward points into fractional government Treasury Bills and mutual fund units.
+          </p>
+
+          <h3>Architecture & Data Flow</h3>
+          <ol>
+            <li>
+              <strong>Fractional Wealthback Rewards:</strong>
+              When a customer completes a purchase, the merchant issues 2% cashback. Rather than expiring store credit, the reward balance accumulates in an escrow wallet.
+            </li>
+            <li>
+              <strong>Automatic Threshold Investment:</strong>
+              When rewards reach ₦1,000 for money market funds or ₦5,000 for equity index funds, the platform sweeps the funds into the customer's Cowrywise account.
+            </li>
+            <li>
+              <strong>Gamification & Growth Loop:</strong>
+              Users open the marketplace weekly to observe their cashback growing through compound interest, drastically increasing monthly active users (MAU).
+            </li>
+          </ol>
+
+          <h2>Technical Comparison Matrix</h2>
+          <div style="overflow-x:auto; margin:24px 0;">
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+              <thead>
+                <tr style="background:#F1F5F9; border-bottom:2px solid #CBD5E1;">
+                  <th style="padding:12px 14px; font-weight:700;">Scenario</th>
+                  <th style="padding:12px 14px; font-weight:700;">Primary Endpoints</th>
+                  <th style="padding:12px 14px; font-weight:700;">Webhook Triggers</th>
+                  <th style="padding:12px 14px; font-weight:700;">Key Engineering Guardrail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid #E2E8F0;">
+                  <td style="padding:12px 14px; font-weight:700; color:var(--cw-title);">Neobank SuperApp</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">/wallets, /assets</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">wallet.funded, prices.updated</td>
+                  <td style="padding:12px 14px; color:var(--cw-body);">Batch micro-funding fees & unit rounding</td>
+                </tr>
+                <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
+                  <td style="padding:12px 14px; font-weight:700; color:var(--cw-title);">HR / Payroll Split</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">/savings, /wallets</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">wallet.funded, savings.matured</td>
+                  <td style="padding:12px 14px; color:var(--cw-body);">Enforce minimum 3-month tenure lock</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 14px; font-weight:700; color:var(--cw-title);">E-Commerce Wealthback</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">/accounts, /assets</td>
+                  <td style="padding:12px 14px; font-family:var(--font-code); font-size:0.8rem;">investment.created, identity.verified</td>
+                  <td style="padding:12px 14px; color:var(--cw-body);">Defer account creation until threshold is hit</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+            <a href="templates.html" class="btn-primary" style="padding:12px 24px;">Browse Starter App Blueprints →</a>
+            <a href="flows.html" class="btn-secondary" style="padding:12px 24px;">View Sequence Diagrams →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Comprehensive Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Info -->
+        <div class="footer-col brand-col">
+          <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
+            <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+            <span class="logo-wordmark">cowrywise</span>
+            <span class="brand-badge">Embed DX</span>
+          </a>
+          <p class="footer-desc">
+            The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
+            mutual funds, and automated wealth into modern web & mobile fintech products.
+          </p>
+          <div class="footer-author-box">
+            <div class="footer-author-label">Prepared by</div>
+            <div class="footer-author-name">Adeola Lasisi</div>
+            <div class="footer-author-role">Developer Relations Case Study</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Interactive Blueprints & Sandboxes -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Interactive Sandboxes</h4>
+          <ul class="footer-links">
+            <li><a href="simulation.html">Live API Simulation Cockpit</a></li>
+            <li><a href="templates.html">Fintech Starter Apps</a></li>
+            <li><a href="flows.html">Architecture & Sequence Flows</a></li>
+            <li><a href="troubleshooting.html">Troubleshooting Matrix</a></li>
+            <li><a href="index.html#sandbox-preview">Editable API Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Web Guides & Documentation -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Developer Guides</h4>
+          <ul class="footer-links">
+            <li><a href="quickstart.html">5-Minute Quickstart Guide</a></li>
+            <li><a href="integrations.html">Real-World Integration Scenarios</a></li>
+            <li><a href="webhooks.html">Webhook & HMAC Security</a></li>
+            <li><a href="checklist.html">Pre-Live Validation Checklist</a></li>
+            <li><a href="audit.html">90-Day DX Strategy & Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Official Resources -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Official Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Cowrywise Embed Developer Experience Lab. Independent case study by Adeola Lasisi.</span>
+          <span class="footer-pill-mock">Local Mock Engine: Online (Zero Live Credentials Needed)</span>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">GitHub</a>
+          <span>•</span>
+          <a href="quickstart.html">Documentation</a>
+          <span>•</span>
+          <a href="troubleshooting.html">Error Catalog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

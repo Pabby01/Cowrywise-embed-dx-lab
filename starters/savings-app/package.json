@@ -1,0 +1,20 @@
+{
+  "name": "kolovault-savings-starter",
+  "version": "1.0.0",
+  "description": "Full-stack disciplined locked savings web application starter powered by Cowrywise Embed",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@cowrywise/embed-node": "^1.0.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  }
+}

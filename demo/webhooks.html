@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Webhook & HMAC Architecture Guide — Cowrywise Embed</title>
+  <meta name="description"
+    content="Comprehensive guide to Cowrywise Embed webhook events, payload anatomy, constant-time HMAC SHA-256 signature verification, and idempotency patterns.">
+
+  <link rel="icon" type="image/png" href="assets/cowrywise-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js"></script>
+</head>
+
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo-brand">
+        <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+        <span class="logo-wordmark">cowrywise</span>
+        <span class="brand-badge">Embed DX</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="simulation.html">Live Sandbox</a>
+        <a href="templates.html">App Templates</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="flows.html">Architecture Flows</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="simulation.html" class="btn-primary">Launch Sandbox ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sub-page Banner -->
+  <section class="page-hero-banner">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Overview</a>
+        <span>/</span>
+        <a href="quickstart.html">Guides</a>
+        <span>/</span>
+        <span style="color:var(--cw-blue); font-weight:600;">Webhooks & HMAC Security</span>
+      </div>
+      <h1 style="font-size:2.5rem; font-weight:800; color:var(--cw-title); margin-bottom:12px;">
+        Webhook Architecture & HMAC Security
+      </h1>
+      <p style="color:var(--cw-body); font-size:1.1rem; max-width:760px; line-height:1.6;">
+        Real-time asynchronous event notifications, constant-time signature verification, idempotency handling in Redis/SQL, and local testing configurations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Docs Layout Section -->
+  <main class="section">
+    <div class="container">
+      <div class="docs-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+          <div class="docs-nav-group">
+            <div class="docs-nav-title">Developer Guides</div>
+            <div class="docs-nav-items">
+              <a href="quickstart.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                <span>5-Minute Quickstart</span>
+              </a>
+              <a href="integrations.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                <span>Integration Scenarios</span>
+              </a>
+              <a href="webhooks.html" class="docs-nav-item active">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span>Webhooks & HMAC</span>
+              </a>
+              <a href="checklist.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <span>Pre-Live Checklist</span>
+              </a>
+              <a href="audit.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                <span>90-Day DX Strategy</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="docs-nav-group">
+            <div class="docs-nav-title">Interactive Tools</div>
+            <div class="docs-nav-items">
+              <a href="simulation.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                </svg>
+                <span>Live API Simulator</span>
+              </a>
+              <a href="templates.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" />
+                </svg>
+                <span>App Starter Blueprints</span>
+              </a>
+              <a href="flows.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+                <span>Architecture Flows</span>
+              </a>
+              <a href="troubleshooting.html" class="docs-nav-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span>Troubleshooting Matrix</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Content Area -->
+        <article class="docs-body-card docs-prose">
+          <h2>1. Supported Webhook Event Catalog</h2>
+          <p>
+            Cowrywise notifies your application in real-time when asynchronous state transitions complete:
+          </p>
+
+          <div style="overflow-x:auto; margin:24px 0;">
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+              <thead>
+                <tr style="background:#F1F5F9; border-bottom:2px solid #CBD5E1;">
+                  <th style="padding:12px 14px; font-weight:700;">Event Name</th>
+                  <th style="padding:12px 14px; font-weight:700;">Trigger Condition</th>
+                  <th style="padding:12px 14px; font-weight:700;">Recommended Partner Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid #E2E8F0;">
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">account.created</td>
+                  <td style="padding:12px 14px;">New investor account registered</td>
+                  <td style="padding:12px 14px;">Record user reference and unlock KYC submission UI</td>
+                </tr>
+                <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">identity.verified</td>
+                  <td style="padding:12px 14px;">BVN/NIN verification passed Tier-1 checks</td>
+                  <td style="padding:12px 14px;">Unlock investment wallet funding & mutual funds catalog</td>
+                </tr>
+                <tr style="border-bottom:1px solid #E2E8F0;">
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-emerald); font-weight:700;">wallet.funded</td>
+                  <td style="padding:12px 14px;">Customer deposit received via virtual account</td>
+                  <td style="padding:12px 14px;">Credit user balance & execute pending mutual fund orders</td>
+                </tr>
+                <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-blue); font-weight:700;">investment.created</td>
+                  <td style="padding:12px 14px;">Mutual fund units or savings plan allocated</td>
+                  <td style="padding:12px 14px;">Update portfolio balance card & send transaction receipt</td>
+                </tr>
+                <tr style="border-bottom:1px solid #E2E8F0;">
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:#D97706; font-weight:700;">withdrawal.requested</td>
+                  <td style="padding:12px 14px;">Liquidation / payout initiated by customer</td>
+                  <td style="padding:12px 14px;">Display regulatory 24-hour cooling-off countdown timer</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 14px; font-family:var(--font-code); color:var(--cw-emerald); font-weight:700;">withdrawal.completed</td>
+                  <td style="padding:12px 14px;">Funds disbursed to customer's recipient commercial bank</td>
+                  <td style="padding:12px 14px;">Mark liquidation settled and notify customer via push</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>2. Webhook Payload Anatomy</h2>
+          <p>
+            Every incoming HTTP POST request from Cowrywise contains the cryptographic <code>signature</code> and an <code>event</code> envelope:
+          </p>
+
+          <div class="docs-code-box">
+            <div class="docs-code-bar">
+              <span>json — Incoming Webhook Body</span>
+              <button type="button" class="btn-copy-code" data-code="{
+  &quot;signature&quot;: &quot;49c5fe04944bfd8a14b1aa4b99a2aa7a9219c0adda145541edf861bde9196f08&quot;,
+  &quot;event&quot;: {
+    &quot;event&quot;: &quot;wallet.funded&quot;,
+    &quot;timestamp&quot;: &quot;2026-10-19T06:34:44.662Z&quot;,
+    &quot;data&quot;: {
+      &quot;wallet_id&quot;: &quot;wlt_demo_001&quot;,
+      &quot;account_id&quot;: &quot;acc_demo_001&quot;,
+      &quot;amount&quot;: 100000,
+      &quot;currency&quot;: &quot;NGN&quot;,
+      &quot;channel&quot;: &quot;virtual_account_bank_transfer&quot;,
+      &quot;reference&quot;: &quot;cw_ref_9876543210&quot;
+    }
+  }
+}">Copy Payload</button>
+            </div>
+            <pre class="docs-code-pre"><code>{
+  "signature": "49c5fe04944bfd8a14b1aa4b99a2aa7a9219c0adda145541edf861bde9196f08",
+  "event": {
+    "event": "wallet.funded",
+    "timestamp": "2026-10-19T06:34:44.662Z",
+    "data": {
+      "wallet_id": "wlt_demo_001",
+      "account_id": "acc_demo_001",
+      "amount": 100000,
+      "currency": "NGN",
+      "channel": "virtual_account_bank_transfer",
+      "reference": "cw_ref_9876543210"
+    }
+  }
+}</code></pre>
+          </div>
+
+          <h2>3. Cryptographic Signature Verification</h2>
+
+          <h3>TypeScript / Node.js Implementation</h3>
+          <p>
+            Always use <code>crypto.timingSafeEqual</code> to defend against side-channel timing attacks:
+          </p>
+
+          <div class="docs-code-box">
+            <div class="docs-code-bar">
+              <span>typescript — verify-webhook.ts</span>
+              <button type="button" class="btn-copy-code" data-code="import crypto from &quot;node:crypto&quot;;
+
+export function verifyWebhook(
+  incomingSignature: string,
+  clientId: string,
+  clientSecret: string
+): boolean {
+  if (!incomingSignature || !clientId || !clientSecret) return false;
+
+  const expectedHash = crypto
+    .createHmac(&quot;sha256&quot;, clientSecret)
+    .update(clientId)
+    .digest(&quot;hex&quot;);
+
+  const expectedBuffer = Buffer.from(expectedHash.toLowerCase(), &quot;utf8&quot;);
+  const incomingBuffer = Buffer.from(incomingSignature.trim().toLowerCase(), &quot;utf8&quot;);
+
+  if (expectedBuffer.length !== incomingBuffer.length) return false;
+  return crypto.timingSafeEqual(expectedBuffer, incomingBuffer);
+}">Copy Code</button>
+            </div>
+            <pre class="docs-code-pre"><code>import crypto from "node:crypto";
+
+export function verifyWebhook(
+  incomingSignature: string,
+  clientId: string,
+  clientSecret: string
+): boolean {
+  if (!incomingSignature || !clientId || !clientSecret) return false;
+
+  const expectedHash = crypto
+    .createHmac("sha256", clientSecret)
+    .update(clientId)
+    .digest("hex");
+
+  const expectedBuffer = Buffer.from(expectedHash.toLowerCase(), "utf8");
+  const incomingBuffer = Buffer.from(incomingSignature.trim().toLowerCase(), "utf8");
+
+  if (expectedBuffer.length !== incomingBuffer.length) return false;
+  return crypto.timingSafeEqual(expectedBuffer, incomingBuffer);
+}</code></pre>
+          </div>
+
+          <h3>Python / Flask Implementation</h3>
+          <div class="docs-code-box">
+            <div class="docs-code-bar">
+              <span>python — app.py</span>
+              <button type="button" class="btn-copy-code" data-code="import hmac
+import hashlib
+from flask import Flask, request, jsonify, Response
+
+app = Flask(__name__)
+CLIENT_ID = &quot;YOUR_CLIENT_ID&quot;
+CLIENT_SECRET = &quot;YOUR_CLIENT_SECRET&quot;
+
+@app.route(&quot;/api/cowrywise-webhook&quot;, methods=[&quot;POST&quot;])
+def handle_webhook():
+    payload = request.get_json()
+    signature = payload.get(&quot;signature&quot;)
+    if not signature:
+        return Response(&quot;Missing signature&quot;, status=400)
+
+    computed = hmac.new(
+        CLIENT_SECRET.encode(&quot;utf-8&quot;),
+        CLIENT_ID.encode(&quot;utf-8&quot;),
+        hashlib.sha256
+    ).hexdigest()
+
+    if not hmac.compare_digest(computed.lower(), signature.lower()):
+        return Response(&quot;Invalid signature&quot;, status=401)
+
+    # Process event asynchronously...
+    return jsonify({&quot;status&quot;: &quot;acknowledged&quot;}), 200">Copy Code</button>
+            </div>
+            <pre class="docs-code-pre"><code>import hmac
+import hashlib
+from flask import Flask, request, jsonify, Response
+
+app = Flask(__name__)
+CLIENT_ID = "YOUR_CLIENT_ID"
+CLIENT_SECRET = "YOUR_CLIENT_SECRET"
+
+@app.route("/api/cowrywise-webhook", methods=["POST"])
+def handle_webhook():
+    payload = request.get_json()
+    signature = payload.get("signature")
+    if not signature:
+        return Response("Missing signature", status=400)
+
+    computed = hmac.new(
+        CLIENT_SECRET.encode("utf-8"),
+        CLIENT_ID.encode("utf-8"),
+        hashlib.sha256
+    ).hexdigest()
+
+    if not hmac.compare_digest(computed.lower(), signature.lower()):
+        return Response("Invalid signature", status=401)
+
+    # Process event asynchronously...
+    return jsonify({"status": "acknowledged"}), 200</code></pre>
+          </div>
+
+          <h2>4. Production Engineering Best Practices</h2>
+          <ol>
+            <li>
+              <strong>Acknowledge Fast (HTTP 200 within 3 seconds):</strong>
+              Do not perform heavy database aggregations or external network calls directly inside the HTTP webhook endpoint. Immediately enqueue the event into BullMQ, Celery, AWS SQS, or RabbitMQ and return <code>200 OK</code>.
+            </li>
+            <li>
+              <strong>Idempotency via Unique Transaction References:</strong>
+              Network retries may cause duplicate delivery of webhooks. Store processed transaction references (e.g. <code>event.data.reference</code>) in Redis or a PostgreSQL table with a UNIQUE constraint. If already seen, return <code>200 OK</code> immediately without re-crediting balances.
+            </li>
+            <li>
+              <strong>Local Testing with Tunneling:</strong>
+              Use tools like Ngrok or LocalTunnel to test Cowrywise webhooks on your local workstation:
+              <div class="docs-code-box" style="margin: 12px 0;">
+                <div class="docs-code-bar">
+                  <span>bash — tunnel command</span>
+                  <button type="button" class="btn-copy-code" data-code="npx localtunnel --port 3000">Copy Command</button>
+                </div>
+                <pre class="docs-code-pre"><code>npx localtunnel --port 3000
+# or using ngrok:
+ngrok http 3000</code></pre>
+              </div>
+            </li>
+          </ol>
+
+          <div style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+            <a href="simulation.html?tab=webhooks" class="btn-primary" style="padding:12px 24px;">Simulate Webhook in Sandbox →</a>
+            <a href="checklist.html" class="btn-secondary" style="padding:12px 24px;">Pre-Live Security Checklist →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Comprehensive Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Info -->
+        <div class="footer-col brand-col">
+          <a href="index.html" class="logo-brand" style="margin-bottom:14px;">
+            <img src="assets/cowrywise-logo.png" alt="Cowrywise Logo" class="logo-img" />
+            <span class="logo-wordmark">cowrywise</span>
+            <span class="brand-badge">Embed DX</span>
+          </a>
+          <p class="footer-desc">
+            The developer experience laboratory and starter pack for the Cowrywise Embed API. Build high-yield savings,
+            mutual funds, and automated wealth into modern web & mobile fintech products.
+          </p>
+          <div class="footer-author-box">
+            <div class="footer-author-label">Prepared by</div>
+            <div class="footer-author-name">Adeola Lasisi</div>
+            <div class="footer-author-role">Developer Relations Case Study</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Interactive Blueprints & Sandboxes -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Interactive Sandboxes</h4>
+          <ul class="footer-links">
+            <li><a href="simulation.html">Live API Simulation Cockpit</a></li>
+            <li><a href="templates.html">Fintech Starter Apps</a></li>
+            <li><a href="flows.html">Architecture & Sequence Flows</a></li>
+            <li><a href="troubleshooting.html">Troubleshooting Matrix</a></li>
+            <li><a href="index.html#sandbox-preview">Editable API Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Web Guides & Documentation -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Developer Guides</h4>
+          <ul class="footer-links">
+            <li><a href="quickstart.html">5-Minute Quickstart Guide</a></li>
+            <li><a href="integrations.html">Real-World Integration Scenarios</a></li>
+            <li><a href="webhooks.html">Webhook & HMAC Security</a></li>
+            <li><a href="checklist.html">Pre-Live Validation Checklist</a></li>
+            <li><a href="audit.html">90-Day DX Strategy & Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Official Resources -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Official Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://developers.cowrywise.com" target="_blank" rel="noopener">Official Cowrywise Docs ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embed-node" target="_blank" rel="noopener">Official @cowrywise/embed-node ↗</a></li>
+            <li><a href="https://github.com/cowrywise/embedpy" target="_blank" rel="noopener">Official embedpy (Python SDK) ↗</a></li>
+            <li><a href="https://cowrywise.com/embed" target="_blank" rel="noopener">Cowrywise Embed Product ↗</a></li>
+            <li><a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">DX Lab GitHub Repo ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Cowrywise Embed Developer Experience Lab. Independent case study by Adeola Lasisi.</span>
+          <span class="footer-pill-mock">Local Mock Engine: Online (Zero Live Credentials Needed)</span>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/Pabby01/Cowrywise-embed-dx-lab" target="_blank" rel="noopener">GitHub</a>
+          <span>•</span>
+          <a href="quickstart.html">Documentation</a>
+          <span>•</span>
+          <a href="troubleshooting.html">Error Catalog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

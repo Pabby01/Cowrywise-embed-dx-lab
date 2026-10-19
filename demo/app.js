@@ -1265,28 +1265,344 @@ document.addEventListener("DOMContentLoaded", () => {
   // Clear console button
   document.getElementById("btn-clear-console")?.addEventListener("click", clearConsole);
 
-  // Template demo modal triggers
-  document.querySelectorAll(".btn-preview-template").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const templateName = btn.dataset.template;
-      openModal({
-        title: `${window.CW_ICONS ? window.CW_ICONS.icon("sliders") : ""} ${templateName} Preview`,
-        contentHtml: `
-          <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:12px; padding:24px; text-align:center;">
-            <div style="font-size:0.8rem; color:var(--cw-muted); font-weight:700; margin-bottom:8px;">DROP-IN COMPONENT PREVIEW</div>
-            <h4 style="font-size:1.2rem; font-weight:800; color:var(--cw-title); margin-bottom:8px;">${templateName}</h4>
-            <p style="font-size:0.9rem; color:var(--cw-body); margin-bottom:20px;">
-              Ready-to-integrate React & HTML widget powered by Cowrywise Embed API endpoints.
-            </p>
-            <div style="background:white; border:1px solid var(--border-card); border-radius:8px; padding:16px; margin-bottom:16px;">
-              <div style="font-size:0.85rem; font-weight:700; color:var(--cw-title);">Available Allocation: ₦50,000</div>
-              <div style="font-size:0.75rem; color:var(--cw-emerald); font-weight:600;">+16.5% Annualized Return</div>
+  // Copy buttons for clone commands & doc snippets
+  document.querySelectorAll(".btn-clone-copy, .btn-copy-code").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const textToCopy = btn.getAttribute("data-cmd") || btn.getAttribute("data-code") || btn.textContent;
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        showToast({
+          type: "success",
+          title: "Copied to Clipboard!",
+          message: `Snippet copied: ${textToCopy.slice(0, 48)}...`,
+          duration: 3000
+        });
+      } catch (err) {
+        showToast({
+          type: "info",
+          title: "Command Selected",
+          message: textToCopy,
+          duration: 4000
+        });
+      }
+    });
+  });
+
+  // Interactive Starter Web App Demo Modals
+  document.querySelectorAll(".btn-launch-app-demo").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const appKey = btn.getAttribute("data-app");
+
+      if (appKey === "kolovault") {
+        openModal({
+          title: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cw-emerald)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> KoloVault — Disciplined Savings Simulator`,
+          contentHtml: `
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div>
+                    <span style="font-size:0.75rem; color:var(--cw-muted); font-weight:700;">LIVE DEMO WALLET</span>
+                    <div style="font-size:1.3rem; font-weight:800; color:var(--cw-title);">₦${state.wallet.balance.toLocaleString()}</div>
+                  </div>
+                  <span style="font-size:0.75rem; font-weight:700; color:#03684B; background:var(--cw-emerald-subtle); padding:4px 10px; border-radius:99px;">TIER-1 KYC VERIFIED</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--cw-body);">
+                  Simulate creating a locked target savings vault using Cowrywise Embed <code>/api/v1/savings/create</code>.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Savings Goal Name</label>
+                <input type="text" id="demo-kolo-name" class="form-input" value="Tech Career Milestone Vault" />
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div class="form-group">
+                  <label class="form-label">Target Amount (₦)</label>
+                  <input type="number" id="demo-kolo-target" class="form-input" value="500000" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Initial Deposit (₦)</label>
+                  <input type="number" id="demo-kolo-deposit" class="form-input" value="50000" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Lock Tenure & Guaranteed APY</label>
+                <select id="demo-kolo-tenure" class="form-input" style="background:white;">
+                  <option value="3" data-apy="12.5">3 Months Lock (+12.5% Annualized APY)</option>
+                  <option value="6" data-apy="14.0" selected>6 Months Lock (+14.0% Annualized APY)</option>
+                  <option value="12" data-apy="15.5">12 Months Lock (+15.5% Annualized APY)</option>
+                </select>
+              </div>
+
+              <div id="demo-kolo-interest-card" style="background:var(--cw-blue-subtle); border:1px solid rgba(0,102,245,0.2); border-radius:8px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div style="font-size:0.76rem; color:var(--cw-muted); font-weight:600;">Projected Interest at Maturity</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:var(--cw-blue);" id="demo-kolo-interest-val">+₦3,500.00</div>
+                </div>
+                <span style="font-size:0.75rem; color:#03684B; font-weight:700;">Guaranteed SEC Yield</span>
+              </div>
+
+              <button class="btn-primary" id="btn-demo-kolo-submit" style="width:100%; justify-content:center; padding:12px;" type="button">
+                Lock Funds in KoloVault (Execute via SDK)
+              </button>
             </div>
-            <button class="btn-primary" style="width:100%; justify-content:center;">Embed In Partner App</button>
-          </div>
-        `,
-        confirmText: "Close Preview"
-      });
+          `,
+          confirmText: "Close Simulator"
+        });
+
+        // Recalculate interest live
+        const depositInput = document.getElementById("demo-kolo-deposit");
+        const tenureSelect = document.getElementById("demo-kolo-tenure");
+        const interestVal = document.getElementById("demo-kolo-interest-val");
+
+        const updateInterest = () => {
+          const deposit = Number(depositInput.value) || 0;
+          const months = Number(tenureSelect.value) || 6;
+          const apy = Number(tenureSelect.options[tenureSelect.selectedIndex].getAttribute("data-apy")) || 14.0;
+          const interest = (deposit * (apy / 100) * (months / 12)).toFixed(2);
+          if (interestVal) interestVal.textContent = `+₦${Number(interest).toLocaleString()}`;
+        };
+
+        depositInput?.addEventListener("input", updateInterest);
+        tenureSelect?.addEventListener("change", updateInterest);
+        updateInterest();
+
+        document.getElementById("btn-demo-kolo-submit")?.addEventListener("click", () => {
+          const name = document.getElementById("demo-kolo-name").value;
+          const deposit = Number(depositInput.value) || 50000;
+          const months = Number(tenureSelect.value) || 6;
+
+          if (deposit > state.wallet.balance) {
+            showToast({
+              type: "error",
+              title: "Insufficient Wallet Balance",
+              message: `Cannot lock ₦${deposit.toLocaleString()}. Wallet balance is ₦${state.wallet.balance.toLocaleString()}.`,
+              duration: 4000
+            });
+            return;
+          }
+
+          state.wallet.balance -= deposit;
+          state.savings.totalSaved += deposit;
+          state.savings.targetPlans.push({
+            name,
+            amount: deposit,
+            months,
+            date: new Date().toLocaleDateString()
+          });
+
+          renderAll();
+          if (typeof trigger3DVaultPulse === "function") trigger3DVaultPulse("fund");
+          logConsole("HTTP", `POST /api/v1/savings/create 201 Created -> Plan "${name}" locked for ${months} months with ₦${deposit.toLocaleString()}`);
+
+          showToast({
+            type: "success",
+            title: "Vault Created Successfully!",
+            message: `Locked ₦${deposit.toLocaleString()} into "${name}" for ${months} months.`,
+            duration: 4500
+          });
+
+          closeModal();
+        });
+
+      } else if (appKey === "yieldnest") {
+        openModal({
+          title: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> YieldNest — Mutual Funds Portal Simulator`,
+          contentHtml: `
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <span style="font-size:0.75rem; color:var(--cw-muted); font-weight:700;">AVAILABLE WALLET CASH</span>
+                    <div style="font-size:1.3rem; font-weight:800; color:var(--cw-title);">₦${state.wallet.balance.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <span style="font-size:0.75rem; color:var(--cw-muted); font-weight:700;">HOLDINGS</span>
+                    <div style="font-size:1.1rem; font-weight:700; color:var(--cw-emerald);">₦${state.investments.totalUnits.toLocaleString()} units</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Select SEC-Regulated Mutual Fund</label>
+                <select id="demo-fund-select" class="form-input" style="background:white;">
+                  <option value="cw_mmf_01" data-rate="16.5">Cowrywise Money Market Fund (+16.5% Annualized Return)</option>
+                  <option value="cw_halal_01" data-rate="14.2">Halal Ethical Fixed Income Fund (+14.2% Return)</option>
+                  <option value="cw_eurobond_01" data-rate="7.8">Sovereign Eurobond Dollar Fund (+7.8% USD)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Investment Amount (₦)</label>
+                <input type="number" id="demo-fund-amount" class="form-input" value="25000" />
+              </div>
+
+              <div style="background:var(--cw-emerald-subtle); border:1px solid rgba(0,196,140,0.3); border-radius:8px; padding:12px; font-size:0.85rem; color:#03684B;">
+                ✓ SEC Regulated Asset Manager: <strong>Stanbic IBTC / Meristem</strong><br>
+                ✓ Daily dividend distributions credited directly to wallet balance.
+              </div>
+
+              <button class="btn-primary" id="btn-demo-yield-submit" style="width:100%; justify-content:center; padding:12px;" type="button">
+                One-Click Buy Units (Execute via SDK)
+              </button>
+            </div>
+          `,
+          confirmText: "Close Simulator"
+        });
+
+        document.getElementById("btn-demo-yield-submit")?.addEventListener("click", () => {
+          const amount = Number(document.getElementById("demo-fund-amount").value) || 25000;
+          const fundName = document.getElementById("demo-fund-select").options[document.getElementById("demo-fund-select").selectedIndex].text.split("(")[0].trim();
+
+          if (amount > state.wallet.balance) {
+            showToast({
+              type: "error",
+              title: "Insufficient Wallet Funds",
+              message: `You attempted to purchase ₦${amount.toLocaleString()} but your wallet has ₦${state.wallet.balance.toLocaleString()}.`,
+              duration: 4000
+            });
+            return;
+          }
+
+          state.wallet.balance -= amount;
+          state.investments.totalUnits += amount;
+          renderAll();
+
+          if (typeof trigger3DVaultPulse === "function") trigger3DVaultPulse("success");
+          logConsole("HTTP", `POST /api/v1/assets/invest 200 OK -> Purchased ₦${amount.toLocaleString()} units of ${fundName}`);
+
+          showToast({
+            type: "success",
+            title: "Order Fulfilled!",
+            message: `Allocated ₦${amount.toLocaleString()} into ${fundName}. Transaction reference: CW_TXN_${Date.now().toString().slice(-6)}`,
+            duration: 4500
+          });
+
+          closeModal();
+        });
+
+      } else if (appKey === "sparestash") {
+        openModal({
+          title: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cw-emerald)" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/></svg> SpareStash — Round-Up Checkout Engine Simulator`,
+          contentHtml: `
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px;">
+                <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700;">ECOMMERCE CHECKOUT SIMULATION</div>
+                <div style="font-size:1.1rem; font-weight:800; color:var(--cw-title); margin-top:4px;">Supermarket Grocery Cart: ₦4,320.00</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Round-Up Threshold</label>
+                <select id="demo-roundup-mode" class="form-input" style="background:white;">
+                  <option value="100">Round up to Nearest ₦100 (Cart becomes ₦4,400 -> +₦80 spare change)</option>
+                  <option value="500" selected>Round up to Nearest ₦500 (Cart becomes ₦4,500 -> +₦180 spare change)</option>
+                  <option value="1000">Round up to Nearest ₦1,000 (Cart becomes ₦5,000 -> +₦680 spare change)</option>
+                </select>
+              </div>
+
+              <div style="background:var(--cw-blue-subtle); border:1px solid rgba(0,102,245,0.2); border-radius:8px; padding:12px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700; color:var(--cw-title); margin-bottom:4px;">
+                  <span>Accumulated Spare Stash:</span>
+                  <span style="color:var(--cw-blue);">₦14,800.00</span>
+                </div>
+                <div style="font-size:0.78rem; color:var(--cw-body);">
+                  Auto-Sweep Rule: When spare change reaches ₦1,000, funds are automatically swept into Money Market Fund.
+                </div>
+              </div>
+
+              <button class="btn-primary" id="btn-demo-roundup-submit" style="width:100%; justify-content:center; padding:12px;" type="button">
+                Authorize Checkout & Save Spare Change
+              </button>
+            </div>
+          `,
+          confirmText: "Close Simulator"
+        });
+
+        document.getElementById("btn-demo-roundup-submit")?.addEventListener("click", () => {
+          showToast({
+            type: "success",
+            title: "Transaction Rounded Up!",
+            message: "₦180 spare change added to your micro-investing escrow wallet. Auto-sweep triggered!",
+            duration: 4000
+          });
+          logConsole("WEBHOOK", "event: wallet.funded | Spare change +₦180 swept into Cowrywise Money Market Fund.");
+          closeModal();
+        });
+
+      } else if (appKey === "corpyield") {
+        openModal({
+          title: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cw-blue)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> CorpYield — B2B Payroll Salary Split Simulator`,
+          contentHtml: `
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px;">
+                <div style="font-size:0.75rem; color:var(--cw-muted); font-weight:700;">EMPLOYEE PAYROLL PROFILE</div>
+                <div style="font-size:1.2rem; font-weight:800; color:var(--cw-title); margin-top:2px;">Employee: Chidi Okonkwo (Engineer)</div>
+                <div style="font-size:0.9rem; color:var(--cw-body);">Net Salary: <strong>₦600,000.00 / month</strong></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">1. Locked Emergency Savings Allocation (%)</label>
+                <input type="range" id="split-emergency" min="0" max="40" value="15" style="width:100%;" />
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--cw-muted); margin-top:4px;">
+                  <span>Allocated: <strong id="val-split-emergency" style="color:var(--cw-emerald);">15% (₦90,000)</strong></span>
+                  <span>Minimum 3 Months Lock</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">2. Sovereign Eurobond Dollar Fund Allocation (%)</label>
+                <input type="range" id="split-eurobonds" min="0" max="40" value="15" style="width:100%;" />
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--cw-muted); margin-top:4px;">
+                  <span>Allocated: <strong id="val-split-eurobonds" style="color:var(--cw-blue);">15% (₦90,000)</strong></span>
+                  <span>USD Capital Growth</span>
+                </div>
+              </div>
+
+              <div style="background:#F1F5F9; border-radius:8px; padding:12px; display:flex; justify-content:space-between; font-size:0.88rem;">
+                <span style="font-weight:600;">Net Commercial Bank Checking (Take-Home):</span>
+                <strong id="val-split-bank">70% (₦420,000)</strong>
+              </div>
+
+              <button class="btn-primary" id="btn-demo-payroll-submit" style="width:100%; justify-content:center; padding:12px;" type="button">
+                Simulate Monthly Payroll Disbursement
+              </button>
+            </div>
+          `,
+          confirmText: "Close Simulator"
+        });
+
+        const slEmergency = document.getElementById("split-emergency");
+        const slEurobonds = document.getElementById("split-eurobonds");
+        const valEmergency = document.getElementById("val-split-emergency");
+        const valEurobonds = document.getElementById("val-split-eurobonds");
+        const valBank = document.getElementById("val-split-bank");
+
+        const updatePayroll = () => {
+          const em = Number(slEmergency.value);
+          const eu = Number(slEurobonds.value);
+          const bank = Math.max(0, 100 - em - eu);
+          if (valEmergency) valEmergency.textContent = `${em}% (₦${((em / 100) * 600000).toLocaleString()})`;
+          if (valEurobonds) valEurobonds.textContent = `${eu}% (₦${((eu / 100) * 600000).toLocaleString()})`;
+          if (valBank) valBank.textContent = `${bank}% (₦${((bank / 100) * 600000).toLocaleString()})`;
+        };
+
+        slEmergency?.addEventListener("input", updatePayroll);
+        slEurobonds?.addEventListener("input", updatePayroll);
+
+        document.getElementById("btn-demo-payroll-submit")?.addEventListener("click", () => {
+          showToast({
+            type: "success",
+            title: "Payroll Disbursed via Virtual Accounts!",
+            message: "Disbursed ₦600k: ₦90k to Emergency Vault, ₦90k to Eurobonds, ₦420k to Bank Checking.",
+            duration: 5000
+          });
+          logConsole("WEBHOOK", "event: wallet.funded | Cowrywise Virtual Account credited ₦180,000 for employee Chidi Okonkwo.");
+          logConsole("HTTP", "POST /api/v1/savings/create 201 Created -> Emergency Payroll Split.");
+          closeModal();
+        });
+      }
     });
   });
 
