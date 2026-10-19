@@ -6,6 +6,8 @@
   "description": "Independent Cowrywise Embed DX case study and safe TypeScript starter scaffold",
   "scripts": {
     "dev": "tsx src/index.ts",
+    "demo": "tsx scripts/serve-demo.ts",
+    "build": "tsc",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
