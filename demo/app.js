@@ -79,6 +79,11 @@ const ASSETS = {
 // ==========================================================================
 
 function showToast({ type = "info", title = "", message = "", duration = 4000 }) {
+  if (window.trigger3DVaultPulse) {
+    if (type === "success") window.trigger3DVaultPulse("success");
+    else if (type === "error") window.trigger3DVaultPulse("error");
+  }
+
   let container = document.getElementById("toast-container");
   if (!container) {
     container = document.createElement("div");
@@ -350,6 +355,260 @@ function init3DScene() {
 }
 
 // ==========================================================================
+// 4b. Three.js Interactive 3D Smart Contract & Ledger Vault (Simulation Header)
+// ==========================================================================
+
+let simVaultGroup = null;
+let simVaultCore = null;
+let simCoreMat = null;
+let simShockwaveRing = null;
+let simCoins = [];
+
+function initSimulation3D() {
+  const canvas = document.getElementById("sim-3d-canvas");
+  if (!canvas || typeof THREE === "undefined") return;
+
+  const width = canvas.parentElement?.clientWidth || 140;
+  const height = canvas.parentElement?.clientHeight || 90;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+  camera.position.set(0, 1.8, 4.6);
+  camera.lookAt(0, 0, 0);
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true
+  });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Lighting
+  const amb = new THREE.AmbientLight(0xffffff, 0.9);
+  scene.add(amb);
+
+  const keyLight = new THREE.DirectionalLight(0x0066f5, 1.4);
+  keyLight.position.set(4, 5, 4);
+  scene.add(keyLight);
+
+  const fillLight = new THREE.DirectionalLight(0x00c48c, 0.9);
+  fillLight.position.set(-4, -2, -2);
+  scene.add(fillLight);
+
+  simVaultGroup = new THREE.Group();
+  scene.add(simVaultGroup);
+
+  // Central Vault Core (Metallic Octagonal Cylinder)
+  const coreGeo = new THREE.CylinderGeometry(0.75, 0.85, 0.9, 8);
+  simCoreMat = new THREE.MeshStandardMaterial({
+    color: 0x0066f5,
+    metalness: 0.7,
+    roughness: 0.25,
+    emissive: 0x002d7a,
+    emissiveIntensity: 0.3
+  });
+  simVaultCore = new THREE.Mesh(coreGeo, simCoreMat);
+  simVaultGroup.add(simVaultCore);
+
+  // Core wireframe edges
+  const coreEdges = new THREE.EdgesGeometry(coreGeo);
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x60a5fa, transparent: true, opacity: 0.5 });
+  simVaultCore.add(new THREE.LineSegments(coreEdges, lineMat));
+
+  // Outer glowing emerald orbital ring
+  const ringGeo = new THREE.TorusGeometry(1.35, 0.035, 16, 64);
+  const ringMat = new THREE.MeshStandardMaterial({
+    color: 0x00c48c,
+    emissive: 0x00c48c,
+    emissiveIntensity: 0.6,
+    roughness: 0.2
+  });
+  const outerRing = new THREE.Mesh(ringGeo, ringMat);
+  outerRing.rotation.x = Math.PI / 3;
+  simVaultGroup.add(outerRing);
+
+  // Inner golden orbital ring
+  const ring2Geo = new THREE.TorusGeometry(1.05, 0.025, 16, 64);
+  const ring2Mat = new THREE.MeshStandardMaterial({
+    color: 0xffb800,
+    emissive: 0xffb800,
+    emissiveIntensity: 0.5,
+    roughness: 0.3
+  });
+  const innerRing = new THREE.Mesh(ring2Geo, ring2Mat);
+  innerRing.rotation.y = Math.PI / 4;
+  simVaultGroup.add(innerRing);
+
+  // Top LED beacon gem
+  const gemGeo = new THREE.SphereGeometry(0.2, 16, 16);
+  const gemMat = new THREE.MeshStandardMaterial({
+    color: 0x00c48c,
+    emissive: 0x00c48c,
+    emissiveIntensity: 0.85
+  });
+  const gem = new THREE.Mesh(gemGeo, gemMat);
+  gem.position.y = 0.55;
+  simVaultGroup.add(gem);
+
+  // Shockwave pulse ring
+  const shockGeo = new THREE.RingGeometry(0.2, 0.3, 32);
+  const shockMat = new THREE.MeshBasicMaterial({
+    color: 0x00c48c,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0
+  });
+  simShockwaveRing = new THREE.Mesh(shockGeo, shockMat);
+  simShockwaveRing.rotation.x = Math.PI / 2;
+  simShockwaveRing.position.y = 0.55;
+  scene.add(simShockwaveRing);
+
+  // Interactive mouse drag to rotate vault
+  let isDragging = false;
+  let prevX = 0;
+  let prevY = 0;
+
+  canvas.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    prevX = e.clientX;
+    prevY = e.clientY;
+  });
+
+  window.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging || !simVaultGroup) return;
+    const dx = e.clientX - prevX;
+    const dy = e.clientY - prevY;
+    simVaultGroup.rotation.y += dx * 0.02;
+    simVaultGroup.rotation.x += dy * 0.02;
+    prevX = e.clientX;
+    prevY = e.clientY;
+  });
+
+  canvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 0) {
+      isDragging = true;
+      prevX = e.touches[0].clientX;
+      prevY = e.touches[0].clientY;
+    }
+  });
+  window.addEventListener("touchend", () => { isDragging = false; });
+  window.addEventListener("touchmove", (e) => {
+    if (!isDragging || !simVaultGroup || e.touches.length === 0) return;
+    const dx = e.touches[0].clientX - prevX;
+    const dy = e.touches[0].clientY - prevY;
+    simVaultGroup.rotation.y += dx * 0.02;
+    simVaultGroup.rotation.x += dy * 0.02;
+    prevX = e.touches[0].clientX;
+    prevY = e.touches[0].clientY;
+  });
+
+  // Animation Loop
+  let spinSpeed = 0.012;
+  function animate() {
+    requestAnimationFrame(animate);
+
+    if (!isDragging && simVaultGroup) {
+      simVaultGroup.rotation.y += spinSpeed;
+      outerRing.rotation.z += 0.015;
+      innerRing.rotation.x += 0.012;
+    }
+
+    if (spinSpeed > 0.012) {
+      spinSpeed += (0.012 - spinSpeed) * 0.04;
+    }
+
+    // Animate coins
+    for (let i = simCoins.length - 1; i >= 0; i--) {
+      const c = simCoins[i];
+      c.position.y -= 0.08;
+      c.rotation.x += 0.1;
+      c.rotation.y += 0.15;
+      if (c.position.y <= 0.5) {
+        scene.remove(c);
+        simCoins.splice(i, 1);
+        triggerShockwave(0x00c48c);
+      }
+    }
+
+    // Animate shockwave
+    if (simShockwaveRing && simShockwaveRing.material.opacity > 0) {
+      simShockwaveRing.scale.x += 0.08;
+      simShockwaveRing.scale.y += 0.08;
+      simShockwaveRing.material.opacity -= 0.035;
+    }
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  function triggerShockwave(colorHex) {
+    if (!simShockwaveRing) return;
+    simShockwaveRing.scale.set(1, 1, 1);
+    simShockwaveRing.material.color.setHex(colorHex);
+    simShockwaveRing.material.opacity = 0.85;
+  }
+
+  // Global trigger function for real-time reactivity
+  window.trigger3DVaultPulse = function(type) {
+    if (!simVaultGroup || !simCoreMat) return;
+
+    if (type === "success") {
+      simCoreMat.color.setHex(0x00c48c);
+      simCoreMat.emissive.setHex(0x00c48c);
+      simCoreMat.emissiveIntensity = 0.85;
+      spinSpeed = 0.08;
+      triggerShockwave(0x00c48c);
+      setTimeout(() => {
+        simCoreMat.color.setHex(0x0066f5);
+        simCoreMat.emissive.setHex(0x002d7a);
+        simCoreMat.emissiveIntensity = 0.3;
+      }, 1200);
+    } else if (type === "error") {
+      simCoreMat.color.setHex(0xff4757);
+      simCoreMat.emissive.setHex(0xff4757);
+      simCoreMat.emissiveIntensity = 0.9;
+      triggerShockwave(0xff4757);
+
+      const origX = simVaultGroup.position.x;
+      let count = 0;
+      const shakeInterval = setInterval(() => {
+        simVaultGroup.position.x = origX + (Math.random() - 0.5) * 0.25;
+        count++;
+        if (count > 8) {
+          clearInterval(shakeInterval);
+          simVaultGroup.position.x = origX;
+        }
+      }, 40);
+
+      setTimeout(() => {
+        simCoreMat.color.setHex(0x0066f5);
+        simCoreMat.emissive.setHex(0x002d7a);
+        simCoreMat.emissiveIntensity = 0.3;
+      }, 1200);
+    } else if (type === "fund") {
+      const coinGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.06, 16);
+      const coinMat = new THREE.MeshStandardMaterial({
+        color: 0xffb800,
+        metalness: 0.8,
+        roughness: 0.2,
+        emissive: 0xffb800,
+        emissiveIntensity: 0.4
+      });
+      const coin = new THREE.Mesh(coinGeo, coinMat);
+      coin.position.set(0, 2.5, 0);
+      scene.add(coin);
+      simCoins.push(coin);
+      spinSpeed = 0.06;
+    }
+  };
+}
+
+// ==========================================================================
 // 5. Interactive Simulation Execution Engine & Live Response Inspector
 // ==========================================================================
 
@@ -465,6 +724,8 @@ function initSimulationHandlers() {
 
       logConsole("HTTP", `200 OK — Wallet funded with ₦${amt.toLocaleString()}. Ref: ${ref}`);
       logConsole("WEBHOOK", `Dispatched 'wallet.funded' webhook notification.`);
+
+      if (window.trigger3DVaultPulse) window.trigger3DVaultPulse("fund");
 
       showToast({
         type: "success",
@@ -969,6 +1230,7 @@ client = Cowrywise(
 // Initialise everything on load
 document.addEventListener("DOMContentLoaded", () => {
   init3DScene();
+  initSimulation3D();
   initSimulationHandlers();
 
   // Tabs
