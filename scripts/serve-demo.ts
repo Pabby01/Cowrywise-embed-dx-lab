@@ -14,15 +14,35 @@ const MIME_TYPES: Record<string, string> = {
   ".js": "application/javascript",
   ".json": "application/json",
   ".svg": "image/svg+xml",
-  ".png": "image/png"
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp"
 };
 
 const server = http.createServer((req, res) => {
-  let reqPath = req.url === "/" ? "/index.html" : (req.url ?? "/index.html");
-  // Clean query string
-  reqPath = reqPath.split("?")[0];
+  let reqUrl = req.url ?? "/";
+  const [pathname, search] = reqUrl.split("?");
 
-  const filePath = path.join(DEMO_DIR, reqPath);
+  // Redirect /foo.html to /foo (clean URLs)
+  if (pathname.endsWith(".html") && pathname !== "/index.html") {
+    const cleanPath = pathname.slice(0, -5) + (search ? `?${search}` : "");
+    res.writeHead(308, { Location: cleanPath });
+    res.end();
+    return;
+  }
+
+  let reqPath = pathname === "/" ? "/index.html" : pathname;
+
+  let filePath = path.join(DEMO_DIR, reqPath);
+
+  // If no extension, try appending .html
+  if (!path.extname(filePath)) {
+    if (fs.existsSync(filePath + ".html")) {
+      filePath = filePath + ".html";
+    }
+  }
+
   const ext = path.extname(filePath).toLowerCase();
 
   // Basic directory traversal protection
@@ -46,7 +66,7 @@ const server = http.createServer((req, res) => {
 
     const contentType = MIME_TYPES[ext] || "application/octet-stream";
     res.writeHead(200, { "Content-Type": contentType });
-    res.end(content, "utf-8");
+    res.end(content);
   });
 });
 
